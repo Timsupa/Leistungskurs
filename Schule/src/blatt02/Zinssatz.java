@@ -5,25 +5,23 @@ public class Zinssatz {
             Scanner input = new Scanner(System.in);
             System.out.println("Was ist ihr Kapital");
             double altesKapital = input.nextDouble();
-            System.out.println("Was für ein Zinssastz kriegen sie");
-            /*if(input.nextLine(). contains("%")){
-                System.out.println("angabe ohne % machen wieder hollen sie den vorgang");}
-            else {
-                    double zinssatz = input.nextDouble();
-                    double zinsen = altesKapital *  zinssatz / 100;
-                    double neuesKapital  =  altesKapital + zinsen;
-                    System.out.println("Alten Kapital: " + altesKapital +"€");
-                    System.out.println("Zinssatz: " + zinssatz + "%\n");
-                    System.out.println("Zinsen:" + zinsen + "€");
-                    System.out.println("Neues Kapital: " + neuesKapital + "€");};*/ //Todo % error beheben
-
+            System.out.println("Was für ein Zinssastz kriegen Sie (Angaben in % ohne Prozentzeichen)");
             double zinssatz = input.nextDouble();
             double zinsen = altesKapital *  zinssatz / 100;
             double neuesKapital  =  altesKapital + zinsen;
             System.out.println("Alten Kapital: " + altesKapital +"€");
             System.out.println("Zinssatz: " + zinssatz + "%\n");
             System.out.println("Zinsen:" + zinsen + "€");
-            System.out.println("Neues Kapital: " + neuesKapital + "€");
+            System.out.println("Neues Kapital: " + neuesKapital + "€");};
+            //TODO: % error beheben
+
+            /* double zinssatz = input.nextDouble();
+            double zinsen = altesKapital *  zinssatz / 100;
+            double neuesKapital  =  altesKapital + zinsen;
+            System.out.println("Alten Kapital: " + altesKapital +"€");
+            System.out.println("Zinssatz: " + zinssatz + "%\n");
+            System.out.println("Zinsen:" + zinsen + "€");
+            System.out.println("Neues Kapital: " + neuesKapital + "€");*/
 
 
 
@@ -36,4 +34,4 @@ public class Zinssatz {
 
 
     }
-}
+

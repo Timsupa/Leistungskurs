@@ -8,7 +8,7 @@ public class Multiplikation {
             System.out.println("Nenne die zweite (ganze) Zahl");
             Integer zweite = einga.nextInt();
             int ergebniss = erste * zweite;
-        System.out.println(erste  + " * " + zweite + " = " + ergebniss);
+            System.out.println(erste  + " * " + zweite + " = " + ergebniss);
 
 
     }
