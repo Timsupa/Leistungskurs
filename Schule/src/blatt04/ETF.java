@@ -31,9 +31,8 @@ public class ETF {
                     zinssatz *= 12;
                 }
                     monat = monat + 1;//monat;
-                    zukommen =  zukommen + betrag ;
-                    gesamt = gesamt + zukommen;
-                    gesamt = gesamt * zinssatz /100;
+                    gesamt = gesamt + betrag;
+                    gesamt = gesamt * (1+ (zinssatz /100));
                     anteil = gesamt / wert;
                     System.out.println("Jahr: " + jahr);
                     System.out.println("Sie befinden sich im " + monat + ". Monat");
