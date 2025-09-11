@@ -28,3 +28,4 @@ public class Zeitumrechner {
     }
 }
 //Das Program durchläuft 127 sich selbst
+//c) ja stimmt ich habe es unter 10 fals google mir die richtige definition gegeben hat
