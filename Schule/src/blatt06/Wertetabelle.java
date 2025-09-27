@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Wertetabelle {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        int x[] = new int[];
+        int x[] = new int[0];
         System.out.printf("Bis zu welchem Grad wollen Sie Ausgaben haben?");
         int grad = input.nextInt();
         double koeff[] = new double[grad + 1];
