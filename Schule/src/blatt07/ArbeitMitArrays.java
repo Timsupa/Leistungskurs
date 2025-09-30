@@ -50,9 +50,93 @@ public class ArbeitMitArrays {
         }
         System.out.print("]");
     }
-    public static void istSortiert(int a){
-        if(){}
+    public static boolean istSortiert(int[] arr, boolean b){
+        for(int j = 0; j< arr.length-1; j++){
+             if (arr[j]< arr[j+1]){
+                return b = true;
+             }else {
+               return b =  false;
+             }
+        }
+        return b;
     }
+    public static int[] addieren(int[] a, int[] b){
+        int[] d = new int[a.length+b.length];
+        if(a.length > b.length){
+            int i = 0;
+            int c = b.length;
+            d =new int[a.length];
+            while (c != 0){
+                    d[i] += a[i] + b[i];
+                    i++;
+                    c--;
+                }
+            while (a.length !=c + b.length){
+                d[i] = a[i];
+                i++;
+                c++;
+            }
+
+            }else if (a.length < b.length){
+                int i = 0;
+                int c = a.length;
+                 d =new int[b.length];
+                while (c != 0){
+                    d[i] = a[i] + b[i];
+                    i++;
+                    c--;
+                }
+                while (b.length !=c + a.length){
+                    d[i] = b[i];
+                    i++;
+                    c++;
+                }
+            } else if (b.length== a.length){
+            int i = 0;
+            int c = a.length;
+            d =new int[b.length];
+            while (c != 0){
+                d[i] = a[i] + b[i];
+                i++;
+                c--;
+            }
+        }
+        return d;
+    }
+    public static int[] shiftLeft(int[] arr){
+        int a = arr[0];
+        for(int j = 0; j< arr.length-1; j++){
+            arr[j] = arr[j+1];
+        }
+        arr[arr.length] = a;
+        return arr;
+    }
+    public static int[] shiftRight(int[] arr){
+        int a = arr[arr.length];
+        for(int j = 0; j< arr.length-1; j++){
+            arr[j+1] = arr[j];
+        }
+        arr[0] = a;
+        return arr;
+    }
+    public static int[] shiftLeftAbsolute(int[] arr){
+        int a = 0;
+        for(int j = 0; j< arr.length-1; j++){
+            arr[j] = arr[j+1];
+        }
+        arr[arr.length] = a;
+        return arr;
+    }
+    public static int[] shiftRightAbsolute(int[] arr){
+        int a = 0;
+        for(int j = 0; j< arr.length-1; j++){
+            arr[j+1] = arr[j];
+        }
+        arr[0] = a;
+        return arr;
+    }
+
+
     public static void main(String[] args) {
 
     }
