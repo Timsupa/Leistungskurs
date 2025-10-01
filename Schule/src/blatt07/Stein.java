@@ -16,7 +16,7 @@ public class Stein {
             }else  {
                 d = a;
             }
-        }else if (a%2 !=0 && b%2 != 0) {
+        }else if (a%2 != 0 && b%2 != 0) {
             while (a != 0 && b != 0) {
                 if (a > b) {
                     a = (a - b) / 2;
@@ -27,13 +27,13 @@ public class Stein {
                 d = b;
             }else  {
                 d = a;}
-        }else if (a%2 !=0 && b%2 == 0) {
+        }else if (a%2 != 0 && b%2 == 0) {
             while (b != 0) {
                 b /= 2;
                 count++;
             }
             d = a;
-        }else if (a%2 ==0 && b%2 != 0) {
+        }else if (a%2 == 0 && b%2 != 0) {
             while (a != 0) {
                 a /= 2;
                 count++;

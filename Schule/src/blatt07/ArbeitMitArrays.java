@@ -7,7 +7,7 @@ public class ArbeitMitArrays {
      */
     public static void printArray(int[] arr){
         System.out.print("[");
-        for(int i=0;i<arr.length;i++){
+        for(int i = 0;i < arr.length;i++){
             System.out.print("|" + arr[i]);
         }
         System.out.print("]");
@@ -19,7 +19,7 @@ public class ArbeitMitArrays {
      */
     public static void printArray(double[] arr){
         System.out.print("[");
-        for(int i=0;i<arr.length;i++){
+        for(int i = 0;i < arr.length;i++){
             System.out.print("|" + arr[i]);
         }
         System.out.print("]");
@@ -31,21 +31,21 @@ public class ArbeitMitArrays {
      */
     public static void printArray(boolean[] arr){
         System.out.print("[");
-        for(int i=0;i<arr.length;i++){
+        for(int i = 0;i < arr.length;i++){
             System.out.print("|" + arr[i]);
         }
         System.out.print("]");
     }
     public static void printArray(char[] arr){
         System.out.print("[");
-        for(int i=0;i<arr.length;i++){
+        for(int i = 0;i < arr.length;i++){
             System.out.print("|" + arr[i]);
         }
         System.out.print("]");
     }
     public static void printArray(String[] arr){
         System.out.println("[");
-        for(int i=0;i<arr.length;i++){
+        for(int i = 0;i < arr.length;i++){
             System.out.print("|" + arr[i]);
         }
         System.out.print("]");
@@ -61,7 +61,7 @@ public class ArbeitMitArrays {
         return b;
     }
     public static int[] addieren(int[] a, int[] b){
-        int[] d = new int[a.length+b.length];
+        int[] d = new int[a.length + b.length];
         if(a.length > b.length){
             int i = 0;
             int c = b.length;
@@ -71,7 +71,7 @@ public class ArbeitMitArrays {
                     i++;
                     c--;
                 }
-            while (a.length !=c + b.length){
+            while (a.length != c + b.length){
                 d[i] = a[i];
                 i++;
                 c++;
@@ -86,7 +86,7 @@ public class ArbeitMitArrays {
                     i++;
                     c--;
                 }
-                while (b.length !=c + a.length){
+                while (b.length != c + a.length){
                     d[i] = b[i];
                     i++;
                     c++;
@@ -105,7 +105,7 @@ public class ArbeitMitArrays {
     }
     public static int[] shiftLeft(int[] arr){
         int a = arr[0];
-        for(int j = 0; j< arr.length-1; j++){
+        for(int j = 0; j < arr.length-1; j++){
             arr[j] = arr[j+1];
         }
         arr[arr.length] = a;
@@ -113,7 +113,7 @@ public class ArbeitMitArrays {
     }
     public static int[] shiftRight(int[] arr){
         int a = arr[arr.length];
-        for(int j = 0; j< arr.length-1; j++){
+        for(int j = 0; j < arr.length-1; j++){
             arr[j+1] = arr[j];
         }
         arr[0] = a;
@@ -121,16 +121,16 @@ public class ArbeitMitArrays {
     }
     public static int[] shiftLeftAbsolute(int[] arr){
         int a = 0;
-        for(int j = 0; j< arr.length-1; j++){
-            arr[j] = arr[j+1];
+        for(int j = 0; j < arr.length-1; j++){
+            arr[j] = arr[j + 1];
         }
         arr[arr.length] = a;
         return arr;
     }
     public static int[] shiftRightAbsolute(int[] arr){
         int a = 0;
-        for(int j = 0; j< arr.length-1; j++){
-            arr[j+1] = arr[j];
+        for(int j = 0; j < arr.length-1; j++){
+            arr[j + 1] = arr[j];
         }
         arr[0] = a;
         return arr;
