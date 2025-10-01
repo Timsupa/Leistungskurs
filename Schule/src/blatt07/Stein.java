@@ -23,16 +23,22 @@ public class Stein {
                     count++;
                 }
             }
+            if (a == 0){
+                d = b;
+            }else  {
+                d = a;}
         }else if (a%2 !=0 && b%2 == 0) {
             while (b != 0) {
                 b /= 2;
                 count++;
             }
+            d = a;
         }else if (a%2 ==0 && b%2 != 0) {
             while (a != 0) {
                 a /= 2;
                 count++;
             }
+            d = b;
         }
         ggT = Math.pow(2,count);
         return count;
