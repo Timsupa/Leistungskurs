@@ -52,7 +52,7 @@ public class Zahlensysteme {
             int temp = 2;
             String temp2 = umdrehen(intString);
             char[] rech = temp2.toCharArray();
-            for (int i = 1; i < intString.length(); i++) {
+            for (int i = 1; i < intString.length()+1; i++) {
                 if (rech[i] == '(' || rech[i] == ')') {
                     continue;
                 }
@@ -70,7 +70,7 @@ public class Zahlensysteme {
         } else if (hex = true) {
             int multi = 0;
             char[] rech2 = intString.toCharArray();
-            for (int i = 0; i < intString.length()-1; i++) {
+            for (int i = 0; i < intString.length()-2; i++) {
                 if (rech2[i] == '(' || rech2[i] == ')') {
                     continue;
                 }
