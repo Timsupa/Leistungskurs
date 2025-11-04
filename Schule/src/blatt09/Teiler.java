@@ -27,13 +27,15 @@ public class Teiler {
        return anzahl;
     }
     public static int[] teiler(int a) {
-        int[] teiler = new int[a+1];
+        int[] teiler = new int[anzahlTeiler(a)];
+        int p=0;
         for (int i = 1;a > i; i++) {
             if (istTeiler(a, i)) {
-                teiler[i] = i;
+                teiler[p] = i;
+                p++;
             }
         }
-        return teiler[];
+        return teiler;
 
     }
 
