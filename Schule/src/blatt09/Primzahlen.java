@@ -1,14 +1,17 @@
 package blatt09;
+import java.util.Arrays;
+
 import static blatt09.Teiler.istTeiler;
+import static blatt09.Teiler.teiler;
+
 public class Primzahlen {
     public static boolean istPrim(int n) {
+        if (n == 1) return false;
         boolean h = true;
-        for (int i = 1; n == i; i++) {
-            if (i != n && i != 1) {
+        for (int i = 2; n > i; i++) {
                 if (istTeiler(n, i) == true) {
                     h = false;
                     break;
-                }
             }
         }
         return h;
@@ -25,47 +28,38 @@ public class Primzahlen {
     public static int[] generierePrimzahlen(int n) {
         int[] teiler = new int[n];
         int temp = 0;
-        for (int i = 1; i <= n; i++) {
-            if (istPrim(i) == true) {
+        int i= 1;
+        while (true) {
+            if (istPrim(i)) {
                 teiler[temp] = i;
                 temp++;
+                } else if (temp == n) {
+                break;
             }
+            i++;
         }
         return teiler;
     }
 
     public static void primfaktorzerlegung(int n) {
-            int tempo = n;
-            int j = 0;
-            int[] teil = generierePrimzahlen(n);
-            int[] temp = new int[teil.length];
-            for (int i = 1; i <= teil.length - 1; i++) {
-                if (n % teil[i] == 0) {
-                    temp[j] = teil[i];
-                    if (temp[j] == 0) {
-                        break;
-                    }
-                    j++;
-                    n = n / teil[i];
-                    i--;
-                    if (n == 1 || n == 0) {
-                        break;
-                    }
-                }
-            }
-            System.out.print(tempo + " = ");
-            for (int i = 0; i <= temp.length; i++) {
-                if (temp[i] == 0) {
+        System.out.print(n + " = ");
+        while (!istPrim(n)) {
+            int[] arr = Teiler.teiler(n);
+            for (int i = 0; i < arr.length; i++) {
+                if (istPrim(arr[i])) {
+                    System.out.print(arr[i] + " ");
+                    n = n / arr[i];
                     break;
                 }
-                if (i != 0) {
-                    System.out.print(" * ");
-                }
-            System.out.print(temp[i]);
+            }
         }
+        System.out.print(n + " ");
     }
 
     public static void main(String[] args) {
-        primfaktorzerlegung(5184761);
+        int[] arr = generierePrimzahlen(10);
+        //System.out.println(Arrays.toString(arr));
+        primfaktorzerlegung(124);
+
     }
 }
