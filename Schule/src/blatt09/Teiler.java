@@ -1,5 +1,7 @@
 package blatt09;
 
+import java.util.Arrays;
+
 public class Teiler {
     public static boolean istTeiler(int a, int b) {
         if (a % b == 0) {
@@ -40,7 +42,9 @@ public class Teiler {
     }
 
     public static void main(String[] args) {
-        blatt07.ArbeitMitArrays.printArray(teiler(10));
+        int test = anzahlTeiler(6);
+        System.out.println(Integer.toString(test));
+
     }
 }
 

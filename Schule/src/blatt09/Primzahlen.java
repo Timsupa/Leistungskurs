@@ -30,7 +30,7 @@ public class Primzahlen {
         int temp = 0;
         int i= 1;
         while (true) {
-            if (istPrim(i)) {
+            if (istPrim(i)){
                 teiler[temp] = i;
                 temp++;
                 } else if (temp == n) {
@@ -47,7 +47,7 @@ public class Primzahlen {
             int[] arr = Teiler.teiler(n);
             for (int i = 0; i < arr.length; i++) {
                 if (istPrim(arr[i])) {
-                    System.out.print(arr[i] + " ");
+                    System.out.print(arr[i] + " * ");
                     n = n / arr[i];
                     break;
                 }
@@ -57,9 +57,8 @@ public class Primzahlen {
     }
 
     public static void main(String[] args) {
-        int[] arr = generierePrimzahlen(10);
-        //System.out.println(Arrays.toString(arr));
         primfaktorzerlegung(124);
-
+        System.out.println();
+        istPrim(124);
     }
 }
