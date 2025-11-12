@@ -21,7 +21,7 @@ public class DNA {
           }
           if (komplett == 0){return false;}
         }
-        if (komplett == 1){return true;}
+        return true;
     }
 
 }
