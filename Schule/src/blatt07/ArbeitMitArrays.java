@@ -25,6 +25,14 @@ public class ArbeitMitArrays {
         System.out.print("]");
     }
 
+    public static void printArray(byte[] arr){
+        System.out.print("[");
+        for(int i = 0;i < arr.length;i++){
+            System.out.print(arr[i] + " ");
+        }
+        System.out.print("]");
+    }
+
     /**
      * boolean wert wird durch methode ausgegeben
      * @param arr boolean wert
