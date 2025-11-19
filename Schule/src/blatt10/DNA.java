@@ -222,8 +222,8 @@ public class DNA {
                     dnaStr += "10";
                 }
             }
-            for (int i = 0; i < dnaStr.length(); i+=8) {
-                String coc = dnaStr.substring(i, i+7);
+            for (int i = 0; i < dnaStr.length(); i+=9) {
+                String coc = dnaStr.substring(i, i+8);
                 dnaArr[i] = Byte.parseByte(coc, 2);
             }
             return dnaArr;
