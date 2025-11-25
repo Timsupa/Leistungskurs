@@ -61,9 +61,9 @@ public class ArbeitMitArrays {
     public static boolean istSortiert(int[] arr,boolean b){
         for(int j = 0; j< arr.length-1; j++){
              if (arr[j]< arr[j+1]){
-                return b = true;
+                 b = true;
              }else {
-               return b =  false;
+                 b =  false;
              }
         }
         return b;
