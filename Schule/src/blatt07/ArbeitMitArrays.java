@@ -113,18 +113,19 @@ public class ArbeitMitArrays {
     }
     public static int[] shiftLeft(int[] arr){
         int a = arr[0];
-        for(int j = 0; j < arr.length-1; j++){
-            arr[j] = arr[j+1];
+        for(int j = 1; j < arr.length; j++){
+            arr[j] = arr[j-1];
         }
-        arr[arr.length] = a;
+        arr[arr.length-1] = a;
         return arr;
     }
+    //TODO //sift right
     public static int[] shiftRight(int[] arr){
-        int a = arr[arr.length];
-        for(int j = 0; j < arr.length-1; j++){
-            arr[j+1] = arr[j];
+        int a = arr[0];
+        for(int j = 0; j < arr.length+1; j++){
+            arr[j] = arr[j+1];
         }
-        arr[0] = a;
+        arr[arr.length-1] = a;
         return arr;
     }
     public static int[] shiftLeftAbsolute(int[] arr){
