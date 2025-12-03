@@ -75,13 +75,15 @@ public class MultiArrays {
     }
     public static int[][] shiftRows(int[][] arr, int reihe ,int wert) {
        int[][] newArr = arr.clone();
-       int [] j = arr[reihe].clone();
-       for (int i = 0; i < arr[reihe].length; i++) {
+       int[] j = arr[reihe].clone();
            for (int l = 0;l < wert;l++) {
-               blatt07.ArbeitMitArrays.shiftLeft(j);
+              j = blatt07.ArbeitMitArrays.shiftLeft(j);
            }
-       }
-
+       newArr[reihe] = j;
+       return newArr;
+    }
+    public static char[][] copy2DCharArray(char[][] arr) {
+        char[][] newArr = arr.clone();
         return newArr;
     }
 
@@ -90,7 +92,7 @@ public class MultiArrays {
         int [][] g = create2DArray(17,6,1,4);
         print2DArray(g);
         System.out.println();
-        print2DArray(shiftRows(g,0,2));
+        print2DArray(shiftRows(g,0,1));
         //1 2 2 1 3
     }
 

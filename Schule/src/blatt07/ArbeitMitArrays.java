@@ -60,11 +60,7 @@ public class ArbeitMitArrays {
     }
     public static boolean istSortiert(int[] arr,boolean b){
         for(int j = 0; j< arr.length-1; j++){
-             if (arr[j]< arr[j+1]){
-                 b = true;
-             }else {
-                 b =  false;
-             }
+            b = arr[j] < arr[j + 1];
         }
         return b;
     }
@@ -113,8 +109,9 @@ public class ArbeitMitArrays {
     }
     public static int[] shiftLeft(int[] arr){
         int a = arr[0];
-        for(int j = 1; j < arr.length; j++){
-            arr[j] = arr[j-1];
+        arr[0] = arr[1];
+        for(int i = 1;i < arr.length-1;i++){
+            arr[i] = arr[i+1];
         }
         arr[arr.length-1] = a;
         return arr;
@@ -147,6 +144,7 @@ public class ArbeitMitArrays {
 
 
     public static void main(String[] args) {
-
+        int [] k = new int []{1,6,7,4,5};
+        printArray(shiftLeft(k));
     }
 }
