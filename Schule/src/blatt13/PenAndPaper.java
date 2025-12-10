@@ -1,32 +1,65 @@
 package blatt13;
 
 public class PenAndPaper {
-    public static int wuerfel(){
+    public static int wuerfel(int menge,int m){
         int sum = 0;
-        sum = blatt13.Zufall.zufallGanz(1,20);
+        for(int i=0;i<menge;i++) {
+            sum = blatt13.Zufall.zufallGanz(1, m);
+        }
         return sum;
     }
-    public static boolean check(int vor){
-        int h = wuerfel();
-        if(vor<=h){
+    public static boolean check(int wurf){
+        int h = 12;
+        if(wurf <=h){
+            return false;
+        }else if (wurf == 20){
+            System.out.println("Kritische treffer");
             return true;
-        }else if (h == 20){
-            return true;
-        }else if (h == 0) {
+        }else if (wurf == 0) {
+            System.out.println("Kritische Fehlschlag");
             return false;
         }
-        return false;
+        return true;
     }
-    public static int check(int vor,String vorNach){
+    public static boolean check(int vor,String vorNach){
+        int h = wuerfel(1,20);
+        int j = wuerfel(1,20);
+        int wurf = 0;
         if(vorNach == "Vorteil"){
-            int h = wuerfel();
-            int j = wuerfel();
             if (h<=j){
-                return h;
+                wurf= h;
             }else {
-                return j;
+                wurf= j;
+            }
+        }else if (vorNach == "Nachteil"){
+            if (h<=j){
+                wurf= j;
+            }else  {
+                wurf= j;
             }
         }
+        return check(wurf);
     }
-
+    public static int angriff(int wurf,String vorNach,int rüstung,int menge,int bonus) {
+        int schaden = 0;
+        if (vorNach.contains("Vorteil") || vorNach.contains("Nachteil")) {
+            if (check(wurf, vorNach)) {
+                schaden = wuerfel(menge, wurf);
+                if (check(rüstung, vorNach)) {
+                    schaden += bonus;
+                }
+                return schaden;
+            }
+            } else {
+                if (check(wurf)) {
+                    schaden = wuerfel(menge, wurf);
+                    if (check(rüstung)) {
+                        schaden += bonus;
+                    }
+                    return schaden;
+                }
+            }
+        return -1;
+    }
+//todo e
 }
