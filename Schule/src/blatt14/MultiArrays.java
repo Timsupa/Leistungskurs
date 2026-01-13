@@ -83,7 +83,12 @@ public class MultiArrays {
        return newArr;
     }
     public static char[][] copy2DCharArray(char[][] arr) {
-        char[][] newArr = arr.clone();
+        char[][] newArr = new char[arr.length][arr[0].length];
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[0].length; j++) {
+                newArr[i][j] = arr[i][j];
+            }
+        }
         return newArr;
     }
 

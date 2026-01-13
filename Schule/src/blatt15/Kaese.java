@@ -1,46 +1,35 @@
 package blatt15;
+import blatt14.MultiArrays;
 import schisch_visualizer.*;
 import blatt14.Simulation;
 public class Kaese {
-    public static void wasser (char[][] käs) {
-        boolean randwe = false;
-        boolean randsü = false;
-        boolean randddr = false;
-        int temp = 0;
-        int temp2 = 0;
-        int g = 0;
-        for (int i = 0; 10 > i;i++){
-                if (käs[i][g] == '0'){
-                    käs[i][g] = '2';
-                }
-                if (g == 10){
-                    randsü = true;
-                }else{
-                    randsü = false;
-                }
-                if (i == 10){
-                    randddr = true;
-                }else{
-                    randddr = false;
-                }
-                if(i == 0){
-                    randwe = true;
-                }else{
-                    randwe = false;
-                }
-                temp = g;
-                temp2 = i;
-                while (Simulation.getSueden(käs,randsü,i,g) != '0' && Simulation.getWesten(käs,randwe,i,g) != '0' && Simulation.getOsten(käs,randddr,i,g) != '0'){
-                    if (Simulation.getSueden(käs,randsü,i,g) != '0'){
-                        g++;
-                        käs[i][g] = '2';
-                        g = temp;
-                    }
-                    if (Simulation.getOsten(käs,randddr,i,g) != '0'){
+    public static char[][] wasser(char[][] käs) {
 
-                    }}
+        char[][] feldNeu = MultiArrays.copy2DCharArray(käs);
+
+        for (int x = 0; x < käs.length; x++) {
+            for (int y = 0; y < käs[x].length; y++) {
+                if (käs[x][y] == '2') {
+                    if (Simulation.getWesten(käs, false, x, y) == '0') {
+                        feldNeu[x - 1][y] = '2';
+                    }
+                    if (Simulation.getSueden(käs, false, x, y) == '0') {
+                        feldNeu[x][y + 1] = '2';
+                    }
+                    if (Simulation.getOsten(käs, false, x, y) == '0') {
+                        feldNeu[x + 1][y] = '2';
+                    }
+                    if (Simulation.getNorden(käs, false, x, y) == '0') {
+                        feldNeu[x][y - 1] = '2';
+                    }
+                }
+            }
         }
+        return feldNeu;
+
+
     }
+
     public static void main(String[] args) {
         int loch = 0;
         SchischVisualizer sv = new SchischVisualizer();
@@ -51,15 +40,19 @@ public class Kaese {
             }
         }
         sv.step(kaesU);
-        for (int d = 0; d < kaesU.length; d++) {
-            for (int g = 0; 10 > g; g++) {
-                loch = blatt13.Zufall.zufallGanz(6);
-                if (loch > 4) {
-                    kaesU[d][g] = '0';
-                }
+        Simulation.fuellen(kaesU, '0', 0.5);
+        sv.step(kaesU);
+
+        //Oberste Zeile mit Wasser füllen
+        for (int x = 0; x < kaesU.length; x++) {
+            if (kaesU[x][0] == '0') {
+                kaesU[x][0] = '2';
             }
         }
+
         sv.step(kaesU);
-        sv.start();
+                kaesU = wasser(kaesU);
+                sv.step(kaesU);
+            sv.start();
+        }
     }
-}

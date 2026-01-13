@@ -41,7 +41,7 @@ public class Simulation {
         if(rand==false && posy != 0) {
             ret = arr[posx][posy - 1];
         }else {
-            ret = arr[posx][arr.length];
+            ret = arr[posx][0];
         }
         return ret;
     }
@@ -64,11 +64,18 @@ public class Simulation {
         return ret;
     }
     public static char getWesten(char[][] arr,boolean rand,int posx,int posy) {
-        char ret;
+        char ret = 0;
         if(rand==false && posx != 0){
             ret = arr[posx-1][posy];
-        }else {
-            ret = arr[arr[posy].length][posy];
+        }
+        if (rand == true && posx == 0){
+            ret = arr[arr.length-1][posy];
+        }
+        if (rand == true && posx != 0) {
+            ret = arr[posx-1][posy];
+        }
+        if (rand == false && posx == 0) {
+            ret  = arr[posx][posy];
         }
         return ret;
     }
