@@ -100,5 +100,14 @@ public class MultiArrays {
         print2DArray(shiftRows(g,0,1));
         //1 2 2 1 3
     }
+    public static char[][][] createEmpty3DCharArray(int a, int b,int zähler) {
+        char[][][] arr = new char[a][b][zähler];
+        for (int i = 0; i < a; i++) {
+            for (int j = 0; j < b; j++) {
+                arr[i][j][zähler-1] = ' ';
+            }
+        }
+        return arr;
+    }
 
 }

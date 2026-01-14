@@ -2,6 +2,7 @@ package blatt15;
 import blatt14.MultiArrays;
 import schisch_visualizer.*;
 import blatt14.Simulation;
+import java.util.Scanner;
 public class Kaese {
     public static char[][] wasser(char[][] käs) {
 
@@ -35,7 +36,7 @@ public class Kaese {
         SchischVisualizer sv = new SchischVisualizer();
         char[][] kaesU = blatt14.MultiArrays.createEmpty2DCharArray(10, 10);
         for (int b = 0; b < kaesU.length; b++) {
-            for (int i = 0; 10 > i; i++) {
+            for (int i = 0; i < 10; i++) {
                 kaesU[i][b] = '5';
             }
         }
@@ -49,10 +50,14 @@ public class Kaese {
                 kaesU[x][0] = '2';
             }
         }
-
+        int hoch = 30;
         sv.step(kaesU);
-                kaesU = wasser(kaesU);
-                sv.step(kaesU);
-            sv.start();
+        while (hoch != 0) {
+            kaesU = wasser(kaesU);
+            hoch--;
+            sv.step(kaesU);
+        }
+
+        sv.start();
         }
     }
