@@ -157,7 +157,7 @@ public class Farben {
     public static void zugEins(char[][] spielfeld,int spielerNum,int[] pX,int[] pY) {
         int zufall = 0;
         if (spielerNum < 4) {
-            zufall = blatt13.Zufall.zufallGanz(1, 4);
+            zufall = Zufall.zufallGanz(1, 4);
             if (zufall== 3) {
                 if (pX[spielerNum] == 78) {
                 }else {
@@ -191,7 +191,7 @@ public class Farben {
                 }
             }
             if (spielerNum >= 4) {
-                zufall = blatt13.Zufall.zufallGanz(1, 4);
+                zufall = Zufall.zufallGanz(1, 4);
                 if (zufall == 3) {
                     if (pX[spielerNum] == 78) {
                     } else {
@@ -231,7 +231,39 @@ public class Farben {
         String reih = reihenfolge();
         for (int i = 0; i < reih.length(); i++) {
             int spieler = Character.getNumericValue(reih.charAt(i)) - 1;
+            int zug12 = Zufall.zufallGanz(1, 2);
+            if (zug12 == 1) {
+                zugEins(spielfeld,spieler,pX,pY);
+            }
+            if (zug12 == 2) {
+                zugZwei(spielfeld,pX,pY,spieler);
+            }
         }
+    }
+    public static void auswertung(char[][] spielfeld,int [] pX,int[] pY) {
+        int team1 = zaehlen(spielfeld,1);
+        int team2 = zaehlen(spielfeld,2);
+        int weiß = zaehlen(spielfeld,0);
+        String gewinner = "";
+        if(team1 > team2){
+            gewinner = "Magenta";
+        }else if(team1 < team2){
+            gewinner = "Hellgrün";
+        }
+        System.out.println("! Auswertung !");
+        System.out.println("Team1: " + team1);
+        System.out.println("Team2: " + team2);
+        System.out.println("Unberührt" + weiß);
+        System.out.println();
+        System.out.println("Prozentuale Wertung");
+        double team1prozent = team1 * 100 / (team1 + team2);
+        double team2prozent  = team2 * 100 / (team1 + team2);
+        System.out.println("Team1 Prozente: " + team1prozent + "%");
+        System.out.println("Team2 Prozente: " + team2prozent + "%");
+        System.out.println();
+        System.out.println("Der Gewinner ist");
+        System.out.println();
+        System.out.println("  " + gewinner + "  " );
     }
     public static void startPositionen(char[][] spielfeld,int[]pX,int[]pY,int[]reihenfolge){
         for (int i = 0; i < 4; i++) {
@@ -245,6 +277,16 @@ public class Farben {
             spielfeld[pX[i]][pY[i]] = 'P';
         }
     }
+    public static void simulatuon(char[][] spielfeld,int[]pX,int[]pY,int züge){
+        SchischVisualizer schischVisualizer = new SchischVisualizer();
+        while (züge != 0){
+            schritt(spielfeld,pX,pY);
+            schischVisualizer.step(spielfeld);
+            züge--;
+        }
+        schischVisualizer.start();
+        auswertung(spielfeld,pX,pY);
+    }
     public static void main(String[] args) {
         SchischVisualizer sv = new SchischVisualizer();
         char[][] spielfeld = new char[80][80];
@@ -253,7 +295,6 @@ public class Farben {
         int[] reihenfolge = new int[8];
         startPositionen(spielfeld, pX, pY, reihenfolge);
         sv.step(initialisiereSpielfeld(spielfeld));
-        sv.start();
-        System.out.println(zaehlen(spielfeld,'2'));
+        simulatuon(spielfeld,pX,pY,1000);
     }
 }
