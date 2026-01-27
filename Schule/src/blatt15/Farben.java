@@ -2,6 +2,7 @@ package blatt15;
 import blatt13.Zufall;
 import schisch_visualizer.*;
 import java.util.stream.IntStream;
+import java.util.Scanner;
 public class Farben {
     public static char[][] initialisiereSpielfeld(char[][] spielfeld) {
        IntStream.range(0, spielfeld.length).forEach(i -> spielfeld[i][0] = '8');
@@ -25,7 +26,7 @@ public class Farben {
             }
             ausgabe = white;
         }
-        if (team == '1') {
+        if (team == 1) {
             magenta =+ 4;
             for (int i = 0; i < spielfeld.length; i++) {
                 for (int j = 0; j < spielfeld.length; j++) {
@@ -36,7 +37,7 @@ public class Farben {
             }
             ausgabe = magenta;
         }
-        if (team == '2') {
+        if (team == 2) {
             hellgrün =+4;
             for (int i = 0; i < spielfeld.length; i++) {
                 for (int j = 0; j < spielfeld.length; j++) {
@@ -70,7 +71,7 @@ public class Farben {
                 pX[spielerNum] = pxT;
                 pY[spielerNum] = pyT;
             }
-        }else if (spielerNum <= 4) {
+        }
             pxT = pX[spielerNum];
             pyT = pY[spielerNum];
             if (zaehlen(spielfeld, 2) < 5) {
@@ -88,14 +89,13 @@ public class Farben {
                 pX[spielerNum] = pxT;
                 pY[spielerNum] = pyT;
             }
-        }
     }
     public static String reihenfolge() {
         String reihe = "";
-        int[] spieler = {1, 2, 3, 4, 5, 6, 7, 8};
+        int[] spieler ={1, 2, 3, 4, 5, 6, 7, 8};
         // Fisher-Yates Shuffle Algorithmus von julius geklaut
-        for (int i = spieler.length - 1; i > 0; i--) {
-            int j = Zufall.zufallGanz(0, i + 1);
+        for (int i = spieler.length -1; i > 0; i--) {
+            int j = Zufall.zufallGanz(0, i+1);
             // tausch
             int temp = spieler[i];
             spieler[i] = spieler[j];
@@ -108,156 +108,99 @@ public class Farben {
         return reihe;
     }
     public static void zugZwei(char[][] spielfeld,int[] pX,int[] pY,int spielerNum) {
-        int weg = 1;
-        if(pX[spielerNum] < 45){
-            weg = -1;
-        }else{
-            weg = 1;
-        }
-        if (spielerNum < 4) {
-            if (pX[spielerNum] != 78){
-                spielfeld[pX[spielerNum]][pY[spielerNum]] = '7';
-                pX[spielerNum] = pX[spielerNum]+weg;
-                spielfeld[pX[spielerNum]][pY[spielerNum]] = 'P';
-            }
-            else {
-                if (pY[spielerNum] != 78){
-                    spielfeld[pY[spielerNum]][pX[spielerNum]] = '7';
-                    pY[spielerNum] = pY[spielerNum]+1;
-                    spielfeld[pY[spielerNum]][pX[spielerNum]] = 'P';
-                }
-                else {
-                    spielfeld[pY[spielerNum]][pX[spielerNum]] = '7';
-                    pY[spielerNum] = pY[spielerNum]-1;
-                    spielfeld[pY[spielerNum]][pX[spielerNum]] = 'P';
-                }
-            }
-
-        }
-        if (spielerNum <= 4) {
-            if (pX[spielerNum] != 78){
+        if (spielerNum >= 4) {
+            int zug = blatt13.Zufall.zufallGanz(1,4);
+            if (zug == 1){
                 spielfeld[pX[spielerNum]][pY[spielerNum]] = '9';
-                pX[spielerNum] = pX[spielerNum]+weg;
+                pX[spielerNum] = pX[spielerNum]+1;
                 spielfeld[pX[spielerNum]][pY[spielerNum]] = 'P';
             }
-            else {
-                if (pY[spielerNum] != 78){
-                    spielfeld[pY[spielerNum]][pX[spielerNum]] = '9';
-                    pY[spielerNum] = pY[spielerNum]+1;
-                    spielfeld[pY[spielerNum]][pX[spielerNum]] = 'P';
-                }
-                else {
-                    spielfeld[pY[spielerNum]][pX[spielerNum]] = '9';
-                    pY[spielerNum] = pY[spielerNum]-1;
-                    spielfeld[pY[spielerNum]][pX[spielerNum]] = 'P';
-                }
+            if (zug == 2){
+                spielfeld[pX[spielerNum]][pY[spielerNum]] = '9';
+                pX[spielerNum] = pX[spielerNum]-1;
+                spielfeld[pX[spielerNum]][pY[spielerNum]] = 'P';
+            }
+            if (zug == 3){
+                spielfeld[pX[spielerNum]][pY[spielerNum]] = '9';
+                pY[spielerNum] = pX[spielerNum]+1;
+                spielfeld[pX[spielerNum]][pY[spielerNum]] = 'P';
+            }
+            if (zug == 4){
+                spielfeld[pX[spielerNum]][pY[spielerNum]] = '9';
+                pY[spielerNum] = pX[spielerNum]-1;
+                spielfeld[pX[spielerNum]][pY[spielerNum]] = 'P';
             }
         }
+
     }
     public static void zugEins(char[][] spielfeld,int spielerNum,int[] pX,int[] pY) {
         int zufall = 0;
         if (spielerNum < 4) {
             zufall = Zufall.zufallGanz(1, 4);
-            if (zufall== 3) {
+            if (zufall == 3) {
                 if (pX[spielerNum] == 78) {
-                }else {
+                } else {
                     spielfeld[pX[spielerNum]][pY[spielerNum]] = '7';
-                    spielfeld[pX[spielerNum] + 1][pY[spielerNum]] = 'P';
                     pX[spielerNum] = pX[spielerNum] + 1;
+                    spielfeld[pX[spielerNum]][pY[spielerNum]] = 'P';
                 }
             }
-            if(zufall== 2) {
+            if (zufall == 2) {
                 if (pY[spielerNum] == 78) {
-                }else {
+                } else {
                     spielfeld[pX[spielerNum]][pY[spielerNum]] = '7';
-                    spielfeld[pX[spielerNum]][pY[spielerNum] + 1] = 'P';
                     pY[spielerNum] = pY[spielerNum] + 1;
+                    spielfeld[pX[spielerNum]][pY[spielerNum]] = 'P';
                 }
             }
-            if(zufall== 1){
+            if (zufall == 1) {
                 if (pX[spielerNum] == 1) {
-                }else {
-                spielfeld[pX[spielerNum]][pY[spielerNum]] = '7';
-                spielfeld[pX[spielerNum]-1][pY[spielerNum]] = 'P';
-                pX[spielerNum] = pX[spielerNum]-1;
-                }
-            }
-            if(zufall == 4){
-                if (pY[spielerNum] == 1) {
-                }else {
+                } else {
                     spielfeld[pX[spielerNum]][pY[spielerNum]] = '7';
-                    spielfeld[pX[spielerNum]][pY[spielerNum] - 1] = 'P';
-                    pY[spielerNum] = pY[spielerNum] - 1;
+                    pX[spielerNum] = pX[spielerNum] - 1;
+                    spielfeld[pX[spielerNum]][pY[spielerNum]] = 'P';
                 }
             }
-            if (spielerNum >= 4) {
-                zufall = Zufall.zufallGanz(1, 4);
-                if (zufall == 3) {
-                    if (pX[spielerNum] == 78) {
-                    } else {
-                        spielfeld[pX[spielerNum]][pY[spielerNum]] = '9';
-                        spielfeld[pX[spielerNum] + 1][pY[spielerNum]] = 'P';
-                        pX[spielerNum] = pX[spielerNum] + 1;
-                    }
-                }
-                if (zufall == 2) {
-                    if (pY[spielerNum] == 78) {
-                    } else {
-                        spielfeld[pX[spielerNum]][pY[spielerNum]] = '9';
-                        spielfeld[pX[spielerNum]][pY[spielerNum] + 1] = 'P';
-                        pY[spielerNum] = pY[spielerNum] + 1;
-                    }
-                }
-                if (zufall == 1) {
-                    if (pX[spielerNum] == 1) {
-                    } else {
-                        spielfeld[pX[spielerNum]][pY[spielerNum]] = '9';
-                        spielfeld[pX[spielerNum] - 1][pY[spielerNum]] = 'P';
-                        pX[spielerNum] = pX[spielerNum] - 1;
-                    }
-                }
-                if (zufall == 4) {
-                    if (pY[spielerNum] == 1) {
-                    } else {
-                        spielfeld[pX[spielerNum]][pY[spielerNum]] = '9';
-                        spielfeld[pX[spielerNum]][pY[spielerNum] - 1] = 'P';
-                        pY[spielerNum] = pY[spielerNum] - 1;
-                    }
+            if (zufall == 4) {
+                if (pY[spielerNum] == 1) {
+                } else {
+                    spielfeld[pX[spielerNum]][pY[spielerNum]] = '7';
+                    pY[spielerNum] = pY[spielerNum] - 1;
+                    spielfeld[pX[spielerNum]][pY[spielerNum]] = 'P';
                 }
             }
         }
     }
     public static void schritt(char[][] spielfeld,int [] pX,int[] pY) {
         String reih = reihenfolge();
-        for (int i = 0; i < reih.length(); i++) {
-            int spieler = Character.getNumericValue(reih.charAt(i)) - 1;
-            int zug12 = Zufall.zufallGanz(1, 2);
-            if (zug12 == 1) {
+        for (int i = 0; i < 8; i++) {
+            int spieler = Character.getNumericValue(reih.charAt(i)-1);
+            if (spieler < 4) {
                 zugEins(spielfeld,spieler,pX,pY);
-            }
-            if (zug12 == 2) {
+            } else {
                 zugZwei(spielfeld,pX,pY,spieler);
             }
+
         }
     }
     public static void auswertung(char[][] spielfeld,int [] pX,int[] pY) {
         int team1 = zaehlen(spielfeld,1);
         int team2 = zaehlen(spielfeld,2);
         int weiß = zaehlen(spielfeld,0);
+        System.out.println(team1);
         String gewinner = "";
         if(team1 > team2){
             gewinner = "Magenta";
         }else if(team1 < team2){
             gewinner = "Hellgrün";
         }
+        double team1prozent = (double) (team1 * 100) / (team1 + team2);
+        double team2prozent  = (double) team2 * 100 / (team1 + team2);
         System.out.println("! Auswertung !");
         System.out.println("Team1: " + team1);
         System.out.println("Team2: " + team2);
-        System.out.println("Unberührt" + weiß);
         System.out.println();
         System.out.println("Prozentuale Wertung");
-        double team1prozent = team1 * 100 / (team1 + team2);
-        double team2prozent  = team2 * 100 / (team1 + team2);
         System.out.println("Team1 Prozente: " + team1prozent + "%");
         System.out.println("Team2 Prozente: " + team2prozent + "%");
         System.out.println();
@@ -279,12 +222,14 @@ public class Farben {
     }
     public static void simulatuon(char[][] spielfeld,int[]pX,int[]pY,int züge){
         SchischVisualizer schischVisualizer = new SchischVisualizer();
+        Scanner scanner = new Scanner(System.in);
         while (züge != 0){
             schritt(spielfeld,pX,pY);
             schischVisualizer.step(spielfeld);
             züge--;
         }
         schischVisualizer.start();
+        String stop = scanner.next();
         auswertung(spielfeld,pX,pY);
     }
     public static void main(String[] args) {
@@ -295,6 +240,6 @@ public class Farben {
         int[] reihenfolge = new int[8];
         startPositionen(spielfeld, pX, pY, reihenfolge);
         sv.step(initialisiereSpielfeld(spielfeld));
-        simulatuon(spielfeld,pX,pY,1000);
+        simulatuon(spielfeld,pX,pY,100);
     }
 }
