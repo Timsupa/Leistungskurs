@@ -27,8 +27,6 @@ public class Zufall {
         }
         return arr;
     }
-
-
     public static void main(String[] args) {
         System.out.println(zufallGanz(9));
         System.out.println(zufall(91));

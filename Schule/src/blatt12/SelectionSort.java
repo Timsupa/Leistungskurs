@@ -29,10 +29,10 @@ public class SelectionSort {
                 }
             }
         }
-
+        blatt07.ArbeitMitArrays.printArray(arr);
     }
 
     public static void main(String[] args) {
-       selectionSort(new int[]{1,2,32,4,53,6,7,8,9,10}, "min");
+        selectionSort(new int[]{1,2,32,4,53,6,7,8,9,10}, "min");
     }
 }
