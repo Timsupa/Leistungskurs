@@ -32,6 +32,6 @@ public class Systemsprenger {
         }
     }
     public static void main(String[] args) throws IOException {
-        sprengen(1);
+        sprengen(2147483647);
     }
 }
