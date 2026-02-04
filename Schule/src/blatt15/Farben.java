@@ -118,6 +118,7 @@ public class Farben {
     }
 
     public static void zugZwei(int spielerNum) {
+        int zufall = 0;
         int x = 0;
         int y = 0;
         if (blatt14.Simulation.getWesten(spielfeld, false, pX[spielerNum], pY[spielerNum]) == '7' || blatt14.Simulation.getWesten(spielfeld, false, pX[spielerNum], pY[spielerNum]) == 'P') {
@@ -137,14 +138,43 @@ public class Farben {
             y = pY[spielerNum];
             pY[spielerNum]++;
         } else {
-            if (pX[spielerNum] != 78) {
+            if (pY[spielerNum] == 78 && pX[spielerNum] != 78) {
                 x = pX[spielerNum];
                 y = pY[spielerNum];
                 pX[spielerNum]++;
-            }else if(pX[spielerNum] == 78 && pY[spielerNum] != 78){
-                x = pX[spielerNum];
-                y = pY[spielerNum];
-                pY[spielerNum]++;
+            }
+            zufall = Zufall.zufallGanz(1, 4);
+            if (zufall == 3) {
+                if (pX[spielerNum] == 78) {
+                } else {
+                    spielfeld[pX[spielerNum]][pY[spielerNum]] = '9';
+                    pX[spielerNum] = pX[spielerNum] + 1;
+                    spielfeld[pX[spielerNum]][pY[spielerNum]] = 'P';
+                }
+            }
+            if (zufall == 2) {
+                if (pY[spielerNum] == 78) {
+                } else {
+                    spielfeld[pX[spielerNum]][pY[spielerNum]] = '9';
+                    pY[spielerNum] = pY[spielerNum] + 1;
+                    spielfeld[pX[spielerNum]][pY[spielerNum]] = 'P';
+                }
+            }
+            if (zufall == 1) {
+                if (pX[spielerNum] == 1) {
+                } else {
+                    spielfeld[pX[spielerNum]][pY[spielerNum]] = '9';
+                    pX[spielerNum] = pX[spielerNum] - 1;
+                    spielfeld[pX[spielerNum]][pY[spielerNum]] = 'P';
+                }
+            }
+            if (zufall == 4) {
+                if (pY[spielerNum] == 1) {
+                } else {
+                    spielfeld[pX[spielerNum]][pY[spielerNum]] = '9';
+                    pY[spielerNum] = pY[spielerNum] - 1;
+                    spielfeld[pX[spielerNum]][pY[spielerNum]] = 'P';
+                }
             }
         }
         if (spielfeld[pX[spielerNum]][pY[spielerNum]] == 'P') {
