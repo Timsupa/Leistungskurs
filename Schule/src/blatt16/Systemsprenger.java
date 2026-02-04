@@ -24,8 +24,9 @@ public class Systemsprenger {
             for (int p = j; p + j < wert+ j; p++) {
                 File file = new File("sprengtest\\sprengtest" + p + ".txt");
                 FileWriter fw = new FileWriter(file);
-                 int[] o =blatt13.Zufall.zufallArray(4,4,5);
-                fw.write(Arrays.toString(o));
+                 for (int i = 0; i <  2147483647; i++) {
+                     fw.write((char)blatt13.Zufall.zufallGanz(100));
+                 }
                 fw.close();
             }
         }
