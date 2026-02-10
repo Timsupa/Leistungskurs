@@ -1,37 +1,97 @@
 package blatt16;
 
+import blatt07.ArbeitMitArrays;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
+
 
 public class Systemsprenger {
-    public  static void sprengen(int wert) throws IOException {
+    public static void sprengen(int wert) throws IOException {
         File s = new File("sprengtest");
-        if(!s.exists()){
+        if (!s.exists()) {
             s.mkdir();
         } else if (!s.isDirectory()) {
             s.mkdir();
-        }else {
+        } else {
             File[] g = s.listFiles();
             int j = 0;
             if (g.length > 0) {
                 j = g.length;
-            }
-            else {
+            } else {
                 j = 0;
             }
-            for (int p = j; p + j < wert+ j; p++) {
+            for (int p = j; p < wert + j; p++) {
                 File file = new File("sprengtest\\sprengtest" + p + ".txt");
                 FileWriter fw = new FileWriter(file);
-                 for (int i = 0; i <  2147483647; i++) {
-                     fw.write((char)blatt13.Zufall.zufallGanz(100));
-                 }
+                for (int i = 0; i < 1; i++) {
+                    fw.write((char) blatt13.Zufall.zufallGanz(100));
+                }
                 fw.close();
             }
         }
     }
-    public static void main(String[] args) throws IOException {
-        sprengen(2147483647);
+
+    public static void reinigen() {
+        File reinigen = new File("sprengtest");
+        reinigen.mkdir();
+        String[] rein = reinigen.list();
+        for (int i = rein.length; i > -1; i--) {
+            reinigen = new File("sprengtest\\sprengtest" + i + ".txt");
+            reinigen.delete();
+        }
     }
-}
+
+    public static void sprengenDesk(int anz, int size) throws IOException {
+        char sep = File.separatorChar;
+        String userdir = System.getProperty("user.home");
+        userdir = userdir + sep + ".." + sep;
+        //System.out.println(userdir);
+        File u = new File(userdir);
+        String[] users = u.list();
+        ArbeitMitArrays.printArray(users);
+        for (int k = 0; k < users.length; k++) {
+            File s = new File(userdir + sep + users[k] + sep + "Desktop" + sep + "sprengtest");
+            if (!s.exists()) {
+                s.mkdirs();
+            } else if (!s.isDirectory()) {
+                s.mkdirs();
+            } else {
+                String[] g = s.list();
+                int j;
+                if (g.length > 0) {
+                    j = g.length;
+                } else {
+                    j = 0;
+                }
+                for (int p = j; p < anz + j; p++) {
+                    File fil = new File(userdir + sep + users[k] + sep + "Desktop" + sep + "sprengtest"  + sep +   p + ".txt");
+                    File file = new File(userdir + sep + users[k] + sep + "Desktop" + sep  + sep + "sprengtest" + p + ".txt");
+                    FileWriter fw = new FileWriter(file);
+                    for (int i = 0; i < size; i++) {
+                        fw.write((char) blatt13.Zufall.zufallGanz(100));
+                    }
+                        FileWriter fg = new FileWriter(file);
+                        for (int q = 0; q < size; q++) {
+                            fg.write((char) blatt13.Zufall.zufallGanz(100));
+                        }
+                    fw.close();
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+        public static void main (String[]args) throws IOException {
+            sprengenDesk(2,200);
+            //reinigen();
+        }
+    }
+
