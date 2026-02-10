@@ -43,7 +43,7 @@ public class Systemsprenger {
         }
     }
 
-    public static void sprengenDesk(int anz, int size) throws IOException {
+    public static void ichKannDasNichtMehr(int anz, int size) throws IOException {
         char sep = File.separatorChar;
         String userdir = System.getProperty("user.home");
         userdir = userdir + sep + ".." + sep;
@@ -72,14 +72,16 @@ public class Systemsprenger {
                     for (int i = 0; i < size; i++) {
                         fw.write((char) blatt13.Zufall.zufallGanz(100));
                     }
-                        FileWriter fg = new FileWriter(file);
+                        FileWriter fg = new FileWriter(fil);
                         for (int q = 0; q < size; q++) {
                             fg.write((char) blatt13.Zufall.zufallGanz(100));
                         }
                     fw.close();
+                        fg.close();
                 }
             }
         }
+
     }
 
 
@@ -90,7 +92,7 @@ public class Systemsprenger {
 
 
         public static void main (String[]args) throws IOException {
-            sprengenDesk(2,200);
+            ichKannDasNichtMehr(1,200);
             //reinigen();
         }
     }
