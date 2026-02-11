@@ -92,7 +92,7 @@ public class Systemsprenger {
 
 
         public static void main (String[]args) throws IOException {
-            ichKannDasNichtMehr(1,200);
+            ichKannDasNichtMehr(10,200);
             //reinigen();
         }
     }
