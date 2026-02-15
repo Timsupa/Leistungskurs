@@ -11,7 +11,7 @@ public class Zufall {
         int ganz = (int)zu;
         return ganz;
     }
-    public static double zufall(int grenze, int grenzeo ){
+    public static double zufall(double grenze, double grenzeo ){
         double zu = Math.random()*(grenzeo-grenze)+grenze;
         return zu;
     }

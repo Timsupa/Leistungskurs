@@ -61,5 +61,39 @@ public class PenAndPaper {
             }
         return -1;
     }
-//todo e
+
+    public static void main(String[] args) {
+        for (int i = 0; i < 100; i++) {
+            int lebenA = 70;
+            int lebenB = 42;
+            int rüstung1 = 14;
+            int rüstung2 = 10;
+            int bonusA = 1;
+            int bonusB = 2;
+            String B = "Vorteil";
+            String A = "Nachteil";
+            int länge = 3;
+            while (true) {
+                lebenA -= angriff(1, B, rüstung1,6, bonusB);
+                if (lebenA <= 0) {
+                    System.out.println("Bard");
+                    break;
+                }
+                int temp = lebenB;
+                lebenB -= angriff(1, A,rüstung2 ,8 , bonusA);
+                if (lebenB <= 0) {
+                    System.out.println("Barbar");
+                    break;
+                }
+                if (lebenB < temp) {
+                    lebenB -= wuerfel(1, 10);
+                }
+                länge--;
+                if (länge == 0) {
+                    B = "Nachteil";
+                    A = "Vorteil";
+                }
+            }
+        }
+    }
 }
