@@ -27,7 +27,7 @@ public class Suchkommando {
                         for (int b = 0; b < a; b++) {
                             if (i == temp[b]) {
                                 System.out.println("bertsuc");
-                                continue outer;// muss in die andere if schleife gehen
+                                break;// muss in die andere if schleife gehen
                             }
                         }
                                 System.out.println(path + list[i]);
