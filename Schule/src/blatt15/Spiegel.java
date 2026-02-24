@@ -58,6 +58,73 @@ public class Spiegel {
         arr[1][arr.length/2] = '>';
         sc.step(arr);
     }
+    public static void spiegelSpiegel(char[][] arr,int richt,int posx, int posy) {
+        arr[posx][posy] = ' ';
+        outer:
+        while (true) {
+            if (richt == 1) {
+                for (int i = 0; i < arr.length; i++) {
+                    for (int j = 0; j < arr[0].length; j++) {
+                        if (arr[posx+1][posy] == '/') {
+                            if (arr[posx+1][posy-1] == ' ') {
+                                arr[posx+1][posy-1] = '^';
+                                return;
+                            }
+                            else {
+                                posx += 1;
+                                posy -= 1;
+                                richt = 3;
+                                continue outer;
+                            }
+                        }else  if (arr[posx+1][posy] == '\\') {
+                            if (arr[posx+1][posy+1] == ' ') {
+                                arr[posx+1][posy+1] = 'V';
+                                return;
+                            }
+                            else {
+                                posx += 1;
+                                posy += 1;
+                                richt = 4;
+                                continue outer;
+                            }
+                        }
+                    }
+                }
+            }else if (richt == 2) {
+                for (int i = 0; i < arr.length; i++) {
+                    for (int j = 0; j < arr[0].length; j++) {
+                        if (arr[posx -1][posy] == '/') {
+                            if (arr[posx -1][posy + 1] == ' ') {
+                                arr[posx - 1][posy + 1] = 'V';
+                                return;
+                            } else {
+                                posx -= 1;
+                                posy -= 1;
+                                richt = 4;
+                                continue outer;
+                            }
+                        } else if (arr[posx - 1][posy] == '\\') {
+                            if (arr[posx -1][posy - 1] == ' ') {
+                                arr[posx - 1][posy - 1] = '^';
+                                return;
+                            } else {
+                                posx += 1;
+                                posy += 1;
+                                richt = 3;
+                                continue outer;
+                            }
+                        }
+                    }
+                }
+
+            }else if (richt == 3) {
+
+            }else if (richt == 4) {
+
+            }
+
+        }
+    }
     public static void spiegelSimulation(char[][] arr,double dreh, int schritte,int pfeilab) {
         SchischVisualizer sc = new SchischVisualizer();
         zufallSpiegelSchwer(arr);
@@ -68,13 +135,31 @@ public class Spiegel {
         zufallZiele(arr);
         generierePfeil(arr);
         sc.step(arr);
-        int temp = pfeilab;
+        int warum = pfeilab;
+        int temp = warum;
         while (schritte != 0) {
+            if (warum == 0) {
+                generierePfeil(arr);
+                warum = temp;
+            }
             for (int i = 0; i < arr.length; i++) {
                 for (int j = 0; j < arr[0].length; j++) {
+                    if (pfeilab == 0){
+                        generierePfeil(arr);
+                        pfeilab = temp;
+                    }
                     if (arr[i][j] == '>') {
                         if (arr[i + 1][j] == '8') {
                             arr[i][j] = ' ';
+                        }else  if (arr[i + 1][j] == '>' || arr[i + 1][j] == '<' || arr[i + 1][j] == 'V' || arr[i + 1][j] == '^') {
+                            arr[i][j] = ' ';
+                            arr[i + 1][j] = ' ';
+                        } else if (arr[i+1][j] == '/') {
+                            arr[i][j] = ' ';
+                            arr[i+1][j-1] = '^';
+                        } else if (arr[i+1][j] == '\\') {
+                            arr[i][j] = ' ';
+                            arr[i+1][j+1] = 'V';
                         } else {
                             if (arr[i + 1][j] == 'O') {
                                 arr[i][j] = ' ';
@@ -84,10 +169,20 @@ public class Spiegel {
                                 arr[i + 1][j] = '>';
                             }
                         }
+                        pfeilab--;
                         sc.step(arr);
                     } else if (arr[i][j] == '<') {
                         if (arr[i - 1][j] == '8') {
                             arr[i][j] = ' ';
+                        }else if (arr[i-1][j] == '/') {
+                            arr[i][j] = ' ';
+                            arr[i-1][j+1] = 'V';
+                        } else if (arr[i-1][j] == '\\') {
+                            arr[i][j] = ' ';
+                            arr[i-1][j-1] = '^';
+                        } else  if (arr[i - 1][j] == '>' || arr[i - 1][j] == '<' || arr[i - 1][j] == 'V' || arr[i - 1][j] == '^') {
+                            arr[i][j] = ' ';
+                            arr[i - 1][j] = ' ';
                         } else {
                             if (arr[i - 1][j] == 'O') {
                                 arr[i][j] = ' ';
@@ -97,11 +192,22 @@ public class Spiegel {
                                 arr[i - 1][j] = '<';
                             }
                         }
+                        pfeilab--;
                         sc.step(arr);
                     } else if (arr[i][j] == 'V') {
                         if (arr[i][j + 1] == '8') {
                             arr[i][j] = ' ';
-                        } else {
+                        }else if (arr[i][j+1] == '/') {
+                            arr[i][j] = ' ';
+                            arr[i-1][j+1] = '<';
+                        } else if (arr[i][j+1] == '\\') {
+                            arr[i][j] = ' ';
+                            arr[i+1][j+1] = '>';
+                        }
+                        else if (arr[i][j + 1] == '>' || arr[i][j +1] == '<' || arr[i][j +1] == 'V' || arr[i][j +1] == '^') {
+                            arr[i][j] = ' ';
+                            arr[i][j +1] = ' ';
+                        }else {
                             if (arr[i][j + 1] == 'O') {
                                 arr[i][j] = ' ';
                                 arr[i][j + 1] = ' ';
@@ -110,11 +216,22 @@ public class Spiegel {
                                 arr[i][j] = ' ';
                             }
                         }
+                        pfeilab--;
                         sc.step(arr);
                     } else if (arr[i][j] == '^') {
                         if (arr[i][j - 1] == '8') {
                             arr[i][j] = ' ';
-                        } else {
+                        }
+                        else if (arr[i][j-1] == '/') {
+                            arr[i][j] = ' ';
+                            arr[i+1][j-1] = '>';
+                        } else if (arr[i][j-1] == '\\') {
+                            arr[i][j] = ' ';
+                            arr[i-1][j-1] = '<';
+                        }else if (arr[i][j -1] == '>' || arr[i ][j -1] == '<' || arr[i][j -1] == 'V' || arr[i][j -1] == '^') {
+                            arr[i][j] = ' ';
+                            arr[i][j -1] = ' ';
+                        }else {
                             if (arr[i][j - 1] == 'O') {
                                 arr[i][j] = ' ';
                                 arr[i][j - 1] = ' ';
@@ -123,15 +240,12 @@ public class Spiegel {
                                 arr[i][j] = ' ';
                             }
                         }
+                        pfeilab--;
                         sc.step(arr);
                     }
                 }
             }
-            pfeilab--;
-            if (pfeilab == 0) {
-                generierePfeil(arr);
-                pfeilab = temp;
-            }
+            warum--;
             schritte--;
         }
         sc.step(arr);
