@@ -2,70 +2,49 @@ package blatt15;
 import blatt14.Simulation;
 import schisch_visualizer.*;
 import blatt14.MultiArrays;
-import java.util.Scanner;
 
 import static blatt15.Kaese.wasser;
 
 public class KomplexerKaese {
-    public static char[][] wasser3D(char[][] schnitt ,char[][] front,char[][] back) {
-        char[][] feldNeu = MultiArrays.copy2DCharArray(schnitt);
-        for (int x = 0; x < schnitt.length; x++) {
-            for (int y = 0; y < schnitt[x].length; y++) {
-                if (schnitt[x][y] == '2') {
-                    if (Simulation.getWesten(schnitt, false, x, y) == '0') {
-                        feldNeu[x - 1][y] = '2';
-                    }
-                    if (Simulation.getSueden(schnitt, false, x, y) == '0') {
-                        feldNeu[x][y + 1] = '2';
-                    }
-                    if (Simulation.getOsten(schnitt, false, x, y) == '0') {
-                        feldNeu[x + 1][y] = '2';
-                    }
-                    if (Simulation.getNorden(schnitt, false, x, y) == '0') {
-                        feldNeu[x][y - 1] = '2';
+    public static boolean komplexWasser(char[][] kaese2, int x, int y) {
+        if (kaese2[x][y] == ' ') {
+            return true;
+        }
+        return false;
+    }
+
+    public static char[][] komplexwasser(char[][] kaese1, char[][] kaese2) {
+        for (int i = 0; i < kaese2.length; i++) {
+            for (int j = 0; j < kaese2[i].length; j++) {
+                if (kaese1[i][j] == '2') {
+                    if (komplexWasser(kaese2, i, j)) {
+                        kaese2[i][j] = '2';
                     }
                 }
             }
         }
-        return feldNeu;
-
-
+        return kaese2;
     }
+
     public static void main(String[] args) {
-        int zähler = 10;
-        int temp = zähler+1;
-        int temp2 = temp;
         SchischVisualizer sv = new SchischVisualizer();
-        char[][] kaesU = new char[10][10];
-        char[][][] kaes3 = MultiArrays.createEmpty3DCharArray(10,10,9);
-        while (zähler-1 != 0) {
-            for (int b = 0; b < kaes3.length; b++) {
-                for (int i = 0; 10 > i; i++) {
-                    kaes3[i][b][zähler] = '5';
-                }
+        char[][] kaese1 = Kaese.kaesefill(10, 10, 0.5);
+        char[][] kaese2 = Kaese.kaesefill(10, 10, 0.5);
+        for (int i = 0; i < 100; i++) {
+            Kaese.wasser(kaese1);
+            sv.step(kaese1);
+            char[][] neu = Kaese.wasser(kaese1);
+            while (!MultiArrays.istIdentisch(kaese1, neu)) {
+                kaese1 = neu;
+                kaese2 = komplexwasser(kaese1, kaese2);
+                neu = Kaese.wasser(kaese1);
             }
-            for (int b = 0; b < kaes3[0].length; b++) {
-                for (int i = 0; 10 > i; i++) {
-                    kaesU[b][i] = kaes3[b][i][zähler];
-                }
-            }
-            sv.step(kaesU);
-            Simulation.fuellen(kaesU, '0', 0.5);
-            sv.step(kaesU);
-            for (int x = 0; x < kaesU.length; x++) {
-                if (kaesU[x][0] == '0') {
-                    kaesU[x][0] = '2';
-                }
-            }
-             while (temp != 0) {
-                 kaesU = wasser(kaesU);
-                 temp--;
-             }
-             sv.step(kaesU);
-             temp= temp2;
-             zähler--;
+            sv.step(kaese1);
+            kaese1 = kaese2;
+            kaese2 = Kaese.kaesefill(10, 10, 0.5);
         }
         sv.start();
+
     }
-    }
+}
 
