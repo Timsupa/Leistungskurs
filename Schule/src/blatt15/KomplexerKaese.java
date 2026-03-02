@@ -25,8 +25,9 @@ public class KomplexerKaese {
         }
         return kaese2;
     }
+}
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         SchischVisualizer sv = new SchischVisualizer();
         char[][] kaese1 = Kaese.kaesefill(10, 10, 0.5);
         char[][] kaese2 = Kaese.kaesefill(10, 10, 0.5);
@@ -47,4 +48,4 @@ public class KomplexerKaese {
 
     }
 }
-
+*/
