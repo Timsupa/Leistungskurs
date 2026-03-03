@@ -47,7 +47,6 @@ public class GameOfLife {
                         feld[i][j] = '9';
                     }
                     zähler = 0;
-                    sc.step(feld);
                 }else if(feld[i][j] == '9'){
                     if (Simulation.getSueden(feld,false,i,j) == 9){
                         zähler++;
@@ -73,17 +72,19 @@ public class GameOfLife {
                     } else if (zähler > 3) {
                         feld[i][j] = 'F';
                     }
+                    if (zähler == 3) {
+                        feld[i][j] = '9';
+                    }
                     zähler = 0;
-                    sc.step(feld);
                 }
+                sc.step(feld);
             }
         }
+
+        sc.start();
     }
     public static void main(String[] args) {
-        SchischVisualizer sc = new SchischVisualizer();
         char[][] feld =initRandom(40);
-        sc.step(feld);
         weiter(feld);
-        sc.start();
     }
 }
