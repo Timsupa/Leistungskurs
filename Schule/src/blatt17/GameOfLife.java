@@ -1,9 +1,10 @@
 package blatt17;
+import blatt14.Simulation;
 
 import schisch_visualizer.SchischVisualizer;
 
 public class GameOfLife {
-    public static void initRandom(int warschein){
+    public static char[][] initRandom(int warschein){
         SchischVisualizer sc = new SchischVisualizer();
         char[][] feld = new char[100][100];
         for(int i=0;i<100;i++){
@@ -15,8 +16,7 @@ public class GameOfLife {
                 }
             }
         }
-        sc.step(feld);
-        sc.start();
+        return feld;
     }
     public static void weiter (char[][] feld){
          int zähler = 0;
@@ -41,17 +41,43 @@ public class GameOfLife {
                  } else if (blatt14.Simulation.getSuedOst(feld,false,i,j)== 9) {
                      zähler++;
                  }
-                 if (zähler >= 3){
+                 if (zähler == 3) {
                      feld[i][j] = '9';
                  }
                     zähler = 0;
                 }else if(feld[i-1][j-1] == '9'){
+                    if (blatt14.Simulation.getSueden(feld,false,i,j) == 9){
+                        zähler++;
+                    }else if (blatt14.Simulation.getWesten(feld,false,i,j) == 9){
+                        zähler++;
+                    } else if (blatt14.Simulation.getOsten(feld,false,i,j)== 9){
+                        zähler++;
+                    } else if (blatt14.Simulation.getNorden(feld,false,i,j)== 9) {
+                        zähler++;
+                    } else if (blatt14.Simulation.getNordOst(feld,false,i,j)== 9) {
+                        zähler++;
+                    } else if (blatt14.Simulation.getSuedWest(feld,false,i,j)== 9) {
+                        zähler++;
+                    } else if (blatt14.Simulation.getNordWest(feld,false,i,j)== 9) {
+                        zähler++;
+                    } else if (blatt14.Simulation.getSuedOst(feld,false,i,j)== 9) {
+                        zähler++;
+                    }
+                    if (zähler < 2){
+                        feld[i][j] = 'F';
+                    } else if (zähler == 3 || zähler == 2) {
 
+                    } else if (zähler > 3) {
+                        feld[i][j] = 'F';
+                    }
                 }
+                sc.step(feld);
+                sc.start();
             }
         }
     }
     public static void main(String[] args) {
-
+        char[][] feld =initRandom(5);
+        weiter(feld);
     }
 }

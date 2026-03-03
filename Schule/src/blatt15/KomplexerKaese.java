@@ -1,4 +1,5 @@
 package blatt15;
+/*
 import blatt14.Simulation;
 import schisch_visualizer.*;
 import blatt14.MultiArrays;
@@ -27,7 +28,7 @@ public class KomplexerKaese {
     }
 }
 
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
         SchischVisualizer sv = new SchischVisualizer();
         char[][] kaese1 = Kaese.kaesefill(10, 10, 0.5);
         char[][] kaese2 = Kaese.kaesefill(10, 10, 0.5);
