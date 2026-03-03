@@ -1,7 +1,5 @@
 package blatt14;
 
-import blatt13.Zufall;
-
 public class Simulation {
     public static char[][] fuellen(char[][] arr,char ersetzt,double war) {
         for(int k=0;k<arr.length;k++){
@@ -26,8 +24,8 @@ public class Simulation {
     public static char[][] platzieren(char zeichen,char[][] arr){
         boolean erst = false;
         while(erst==false){
-            int k = Zufall.zufallGanz(0,arr.length);
-            int w = Zufall.zufallGanz(0,arr[0].length);
+            int k = blatt13.Zufall.zufallGanz(0,arr.length);
+            int w = blatt13.Zufall.zufallGanz(0,arr[0].length);
             if (arr[k][w]==zeichen){
             }else{
                 erst=true;
@@ -163,10 +161,9 @@ public class Simulation {
         }
         return arr[posx][posy];
     }
-        public static void main (String[]args){
 
-        }
-        public static int zeahlenVier(char[][] arr,boolean rand,int posx,int posy,int such){
+
+        public static int zeahlenVier(char[][] arr,boolean rand,int posx,int posy,char such){
             int zeahler = 0;
             if (getNorden(arr,rand,posx,posy)== such){
                 zeahler =+ 1;
@@ -182,7 +179,7 @@ public class Simulation {
             }
             return zeahler;
         }
-        public static int zeahlenAcht(char[][] arr,boolean rand,int posx,int posy,int such){
+        public static int zeahlenAcht(char[][] arr,boolean rand,int posx,int posy,char such){
         int zeahler = zeahlenVier(arr,rand,posx,posy,such);
         if (getSuedOst(arr,rand,posx,posy) == such){
             zeahler =+ 1;
@@ -198,5 +195,10 @@ public class Simulation {
         }
         return zeahler;
         }
+
+
+    public static void main (String[]args){
+
+    }
 
     }
