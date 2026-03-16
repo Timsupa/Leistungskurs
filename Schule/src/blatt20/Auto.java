@@ -1,12 +1,11 @@
 package blatt20;
 
 public class Auto {
-    String marke;
-    String model;
-    int tank;
-    int geschwindigkeit;
-    int kilometerstand;
-    Auto a1 = new Auto();
+    private String marke;
+    private String model;
+    private int tank;
+    private int geschwindigkeit;
+    private int kilometerstand;
     public void beschleunigen(int v){
         this.geschwindigkeit = 0;
     }
@@ -36,9 +35,31 @@ public class Auto {
         this.tank = x.tank;
         this.geschwindigkeit = x.geschwindigkeit;
         this.kilometerstand = x.kilometerstand;
-
+    }
+    public void setTank(int tank){
+        this.tank = tank;
+        if (tank < 0)
+        {
+            tank = 0;
+        }
+    }
+    public void setGeschwindigkeit(int geschwindigkeit){
+        this.geschwindigkeit = geschwindigkeit;
+        if (geschwindigkeit < 0){
+            geschwindigkeit = 0;
+        }
+    }
+    public void setKilometerstand(int kilometerstand){
+        this.kilometerstand = kilometerstand;
+        if (kilometerstand < 0){
+            kilometerstand = 0;
+        }
     }
     public static void main(String[] args) {
         Auto a1 = new Auto();
+        System.out.println("Geschwindigkeit: " + a1.geschwindigkeit);
+        System.out.println("Kilometerstand: " + a1.kilometerstand);
+        System.out.println("Tank: " + a1.tank);
+
     }
 }

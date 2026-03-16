@@ -57,5 +57,6 @@ public class QuickSort {
         } else if (liste.length <= 1) {
             return liste;
         }
+        return liste;
     }
 }
