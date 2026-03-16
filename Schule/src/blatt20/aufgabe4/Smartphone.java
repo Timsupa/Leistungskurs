@@ -22,6 +22,20 @@ public class Smartphone {
             akkustand = 0;
         }
     }
+    public void akkustand(String status) {
+        if (status.equals("akkustand")) {
+            if (akkustand == 100) {
+                akkustand = 100;
+            }
+        }
+    }
+    public void laden(String status) {
+        if (status.equals("laden")) {
+            if (akkustand == 0) {
+                akkustand = 0;
+            }
+        }
+    }
 
 
 }

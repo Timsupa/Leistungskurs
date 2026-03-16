@@ -2,15 +2,15 @@ package blatt19;
 
 public class QuickSort {
     public static char[] trennenLinks(char[] liste,int pivot){
-        int h = 0;
-        for (int i = 0; i < liste.length; i++) {
-            if (liste[i] < liste[pivot]) {
-                h ++;
+        int kleinerCount = 0;
+        for (int i = 1; i < liste.length; i++) {
+            if (liste[i] < pivot) {
+                kleinerCount++;
             }
         }
-        char[] kleiner = new char[h+1];
+        char[] kleiner = new char[kleinerCount+1];
         int kleine = 0;
-        for (int i = 0; i < liste.length; i++) {
+        for (int i = 0; i < liste.length-1; i++) {
             if (i == pivot){
                 continue;
             }
@@ -40,7 +40,7 @@ public class QuickSort {
         }
         return groesser;
     }
-    public static char[] zusammenfuegen(char[] liste1,char[] liste2,int pivot){
+    public static char[] zusammenfuegen(char[] liste1,char[] liste2){
         char[] neue = new char[liste1.length+liste2.length];
         for (int i = 0; i < liste1.length; i++) {
             neue[i] = liste1[i];
@@ -53,10 +53,15 @@ public class QuickSort {
             int pivot = liste[0];
             char[] kSortiert = quickSort(trennenLinks(liste, pivot));
             char[] gSortiert = quickSort(trennenRechts(liste, pivot));
-            return zusammenfuegen(kSortiert, gSortiert, pivot);
+            return zusammenfuegen(kSortiert, gSortiert);
         } else if (liste.length <= 1) {
             return liste;
         }
         return liste;
+    }
+
+    public static void main(String[] args) {
+        char[] bob = new char[]{2,65,25,74,21,673,35};
+        quickSort(bob);
     }
 }

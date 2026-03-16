@@ -5,5 +5,8 @@
     </CLASSES>
     <JAVADOC />
     <SOURCES />
+    <excluded>
+      <root url="jar://$USER_HOME$/Downloads/schisch_visualizer_neo.jar!/" />
+    </excluded>
   </library>
 </component>
