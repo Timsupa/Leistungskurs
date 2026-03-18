@@ -1,7 +1,9 @@
 package blatt20.aufgabe4;
 
+import blatt20.Auto;
+
 public class Smartphone {
-    private String marke;
+    public String marke;
     private String model;
     public double akkustand;
     private int speicherplatz;
@@ -161,5 +163,18 @@ public class Smartphone {
         }
     }
 
+    public static void main(String[] args) {
+    }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || !(obj instanceof Smartphone)) {
+            return false;
+        }
+        Smartphone a = (Smartphone) obj;
+        return this.marke.equals(a.marke);
+    }
 }
