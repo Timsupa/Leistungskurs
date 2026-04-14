@@ -8,7 +8,7 @@ public class GrenzenSetzen {
         System.out.println("Was soll die Obergrenze sein?");
         int obergrenze = input.nextInt();
         if (untergrenze > obergrenze) {
-            System.out.println("Sie haben einen Fehler begangen ,starten Sie von Vorne");
+            System.out.println("Sie haben einen FEHLER begangen ,starten Sie von Vorne");
             System.exit(0);
         }
         System.out.println("Ihr Array beinhaltet: ");

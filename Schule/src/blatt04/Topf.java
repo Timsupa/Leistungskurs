@@ -13,18 +13,18 @@ public class Topf {
         double dif;
         double olddif =Math.sqrt(Math.pow(50 - topfx, 2) + Math.pow(50 - topfy, 2));//durch pythagoras die dif beim start des spiels ausrechnen damit sie später mit der neuen verglichen werden kann
         while(true){
-            System.out.println("w , a , s , d");
+            System.out.println("w , a , S , d");
             String bew = input.next();
             if(bew.equals("a")){//wenn a gedrückt wird geht er nach links
                spielerx -= 1;
-            }else if(bew.equals("s")){//geht nach unten
+            }else if(bew.equals("S")){//geht nach unten
                spielery -= 1;
             }else if(bew.equals("d")){//geht nach rechts
                 spielerx += 1;
             } else if (bew.equals("w")) {//geht nach oben
                 spielery += 1;
             } else  {
-                System.out.println("Fehler!");//bei anderer taste wird eine fehlermeldung gegeben und das program startet vom anfang der while schleife
+                System.out.println("FEHLER!");//bei anderer taste wird eine fehlermeldung gegeben und das program startet vom anfang der while schleife
                 continue;
             }
             if( spielerx == topfx && spielery == topfy ){//wenn x und y kordinate von spieler und topf gleich sind endet das spiel
