@@ -26,12 +26,12 @@ public class ETF {
             while (monat < 12) {
                 zinssatz = rand.nextDouble();
                 if (zinssatz < 0.5) {
-                    zinssatz = zinssatz * 24 /100 +1;//double zahl wird in 1,xx geschellt damit es wie prozente mit dem "gesamt"multipliziert wertden kann
+                    zinssatz = zinssatz * 24 /100 +1;//double zahl wird in 1,xx geschellt damit es wie prozente mit dem "anzahlKartenHand"multipliziert wertden kann
                 } else if (zinssatz > 0.5) {
                     zinssatz = zinssatz * 12 /100 +1;
                 }
                     monat = monat + 1;//monat;
-                    gesamt = gesamt + betrag;//gesamt wird mit monatlichem betrag addiert
+                    gesamt = gesamt + betrag;//anzahlKartenHand wird mit monatlichem betrag addiert
                     gesamt = gesamt * zinssatz;//zinsen werden auf das konto gerechnet
                     anteil = gesamt / wert;
                     System.out.println("Jahr: " + jahr);// ausgabe aller nutzvollen varieabeln

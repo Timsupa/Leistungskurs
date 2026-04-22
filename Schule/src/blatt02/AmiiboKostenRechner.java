@@ -6,7 +6,7 @@ public class AmiiboKostenRechner {
             System.out.println("Wie viele Figuren wollen sie Kaufen ?");
             int anzahl = eingib.nextInt();
             int kosten = anzahl * 15;
-            System.out.println("Ihr gesamt Betrag lautet "+kosten);
+            System.out.println("Ihr anzahlKartenHand Betrag lautet "+kosten);
 
     }
 }

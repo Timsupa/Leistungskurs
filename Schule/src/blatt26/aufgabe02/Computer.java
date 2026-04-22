@@ -22,8 +22,8 @@ public abstract class Computer implements Comparable {
         this.kabel = kabel;
     }
 
-    @Override
-    public int compareTo(Computer computer) {
+
+    public int compareTo(Computer computer,Computer computer2) {
         int sigerB = 0;
         int sigerL = 0;
         if(this.gpu > computer.gpu){
