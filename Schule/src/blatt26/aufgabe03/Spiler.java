@@ -7,6 +7,7 @@ public class Spiler {
     private int stern;
     private Karten akarten;
     private Karten[] hand;
+    private boolean miene;
 
     public Spiler() {
         this.skarte = Karten.SCHERE;
@@ -16,10 +17,37 @@ public class Spiler {
         this.hand[0] = skarte;
         this.hand[1] = pkarte;
         this.hand[2] = stkarte;
+        this.miene = false;
     }
-    public void minusAnzahlSterne(){
+    public void mehrSpilers(){
+        Spiler[] spilers = new Spiler[blatt13.Zufall.zufallGanz(100)];
+
+    }
+    public int getStern(Spiler spiler) {
+        return stern;
+    }
+    public void setStern(int stern) {}
+    public void minusAnzahlSterne(Spiler spiler) {
         this.stern --;
     }
+    public void plusAnzahlSterne(Spiler spiler) {
+        this.stern ++;
+    }
+
+
+    public Karten getAkarten(Spiler spiler) {
+        return akarten;
+    }
+
+    public Karten[] getHand(Spiler spiler) {
+        return hand;
+    }
+    public void sternübertragung(Spiler spiler,Spiler spiler2) {
+        minusAnzahlSterne(spiler2);
+        plusAnzahlSterne(spiler);
+
+    }
+
     public void minusAnzahlKarten(Karten akarten) {
         if (akarten == Karten.SCHERE){
             skarte.menge -= 1;
