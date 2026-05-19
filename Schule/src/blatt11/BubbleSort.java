@@ -1,5 +1,7 @@
 package blatt11;
 
+import blatt26.übung.Wesen;
+
 import java.util.Arrays;
 
 import static blatt07.ArbeitMitArrays.istSortiert;
@@ -18,6 +20,11 @@ public class BubbleSort {
             }
         }
         return arr;
+    }
+    public static void swap(Wesen[] arr, int j) {
+        Wesen temp = arr[j];
+        arr[j] = arr[j+1];
+        arr[j+1] = temp;
     }
 
     public static void main(String[] args) {

@@ -7,5 +7,9 @@ public enum Klasse {
     HEXE,
     BAUERNOPFER,
     GOLEM,
-    RITTER
+    RITTER,
+    OGER,
+    SKELLET,
+    TERRORIST,
+    REINBOLD;
 }

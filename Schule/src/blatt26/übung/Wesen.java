@@ -9,8 +9,9 @@ public abstract class Wesen {
     private double glück;
     private int geschwind;
     private int mp;
+    private Klasse klasse;
 
-    public Wesen(int mp, int geschwind, double glück, int magiVert, int magiStär, int stärke, int vert, int leben) {
+    public Wesen(int mp, int geschwind, double glück, int magiVert, int magiStär, int stärke, int vert, int leben, Klasse klasse) {
         this.mp = mp;
         this.geschwind = geschwind;
         this.glück = glück;
@@ -19,10 +20,15 @@ public abstract class Wesen {
         this.stärke = stärke;
         this.vert = vert;
         this.leben = leben;
+        this.klasse = klasse;
     }
 
     public void setLeben(int leben) {
         this.leben = leben;
+    }
+    public Klasse getKlasse(){
+        this.klasse = klasse;
+        return klasse;
     }
 
     public int getLeben() {
@@ -49,11 +55,13 @@ public abstract class Wesen {
         return glück;
     }
 
-    public int getGeschwind() {
+    public int getGeschwind(Wesen wesen) {
         return geschwind;
     }
 
     public int getMp() {
         return mp;
     }
+
+
 }
