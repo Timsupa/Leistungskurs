@@ -108,4 +108,12 @@ public class BinBaum extends Node {
         }
         return a;
     }
+    public int depth(Node n){
+        int tiefe;
+        while (n.getLeft() != null || n.getRight() != null) {
+            n = n.getLeft();
+
+        }
+    }
+
 }
