@@ -1,16 +1,18 @@
-package blatt30.aufgabe02;
+package blatt30.aufgabe03;
 
-public class BinBaum extends Node {
-    private Node root;
+import blatt30.aufgabe02.Node;
+
+public class BinBaum extends blatt30.aufgabe02.Node {
+    private blatt30.aufgabe02.Node root;
 
 
-    public BinBaum(int wert, Node left, Node right, Node root) {
+    public BinBaum(int wert, blatt30.aufgabe02.Node left, blatt30.aufgabe02.Node right, blatt30.aufgabe02.Node root) {
         super(wert, left, right);
         this.root = null;
         this.root = root;
     }
 
-    public Node search(int value, Node current) {
+    public blatt30.aufgabe02.Node search(int value, blatt30.aufgabe02.Node current) {
         if (current.getWert() == value) {
             return current;
         } else if (getLeft() != null && value < root.getWert()) {
@@ -24,18 +26,18 @@ public class BinBaum extends Node {
     }
 
     public void add(int wert) {
-        Node a = this.root;
+        blatt30.aufgabe02.Node a = this.root;
         if (search(wert, a).equals(wert)) {
             System.out.println("gibts schon");
         } else if (neahsteZahl(wert).getWert() < wert) {
-            setLeft(new Node(wert, null, null));
+            setLeft(new blatt30.aufgabe02.Node(wert, null, null));
         } else if (neahsteZahl(wert).getWert() > wert) {
-            setRight(new Node(wert, null, null));
+            setRight(new blatt30.aufgabe02.Node(wert, null, null));
         }
     }
 
-    public Node neahsteZahl(int wert) {
-        Node a = this.root;
+    public blatt30.aufgabe02.Node neahsteZahl(int wert) {
+        blatt30.aufgabe02.Node a = this.root;
         if (search(wert, a).equals(wert)) {
             return a;
         } else {
@@ -43,12 +45,12 @@ public class BinBaum extends Node {
             while (!search(wert, a).equals(null)) {
                 wert++;
             }
-            Node nahest = search(wert, a);
+            blatt30.aufgabe02.Node nahest = search(wert, a);
             wert = temp;
             while (!search(wert, a).equals(null)) {
                 wert--;
             }
-            Node nahestU = search(wert, a);
+            blatt30.aufgabe02.Node nahestU = search(wert, a);
             if (Math.abs(nahest.getWert()) - temp < Math.abs(nahestU.getWert()) - temp) {
                 return nahest;
             } else {
@@ -58,15 +60,15 @@ public class BinBaum extends Node {
         }
     }
 
-    public Node[] findInOrderNeighbour() {
-        Node[] result = new Node[2];
+    public blatt30.aufgabe02.Node[] findInOrderNeighbour() {
+        blatt30.aufgabe02.Node[] result = new blatt30.aufgabe02.Node[2];
         result[1] = neahsteZahl(this.root.getWert() - 1);
         result[0] = neahsteZahl(this.root.getWert() + 1);
         return result;
     }
 
-    public Node remove(int wert) {
-        Node a = search(wert, this.root);
+    public blatt30.aufgabe02.Node remove(int wert) {
+        blatt30.aufgabe02.Node a = search(wert, this.root);
         if (a.getRight() == null && a.getLeft() == null) {
             a = null;
         }else {
@@ -76,7 +78,7 @@ public class BinBaum extends Node {
         return a;
     }
 
-    public Node remowe(Node a) {
+    public blatt30.aufgabe02.Node remowe(blatt30.aufgabe02.Node a) {
         if (a.getLeft().getLeft() == null && a.getRight().getRight() == null) {
             if (a.getRight() != null && a.getLeft() == null) {
                 a = a.getRight();
@@ -114,5 +116,13 @@ public class BinBaum extends Node {
         }
         return 1 + Math.max(depth(a.getLeft()), depth(a.getRight()));
     }
-
+    public Node update(Node a){
+        int rechts = depth(a.getRight());
+        int links = depth(a.getLeft());
+        if (rechts+2 < links || rechts > links+2) {
+            if (rechts > links +2) {
+                Node g = findInOrderNeighbour()[0];
+            }
+        }
+    }
 }
