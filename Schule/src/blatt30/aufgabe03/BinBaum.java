@@ -34,6 +34,7 @@ public class BinBaum extends blatt30.aufgabe02.Node {
         } else if (neahsteZahl(wert).getWert() > wert) {
             setRight(new blatt30.aufgabe02.Node(wert, null, null));
         }
+        alles_update(a);
     }
 
     public blatt30.aufgabe02.Node neahsteZahl(int wert) {
@@ -74,6 +75,18 @@ public class BinBaum extends blatt30.aufgabe02.Node {
         }else {
             remowe(a);
         }
+        alles_update(a);
+
+        return a;
+    }
+    public blatt30.aufgabe02.Node remove(Node b) {
+        Node a = b;
+        if (a.getRight() == null && a.getLeft() == null) {
+            a = null;
+        }else {
+            remowe(a);
+        }
+        alles_update(a);
 
         return a;
     }
@@ -108,6 +121,7 @@ public class BinBaum extends blatt30.aufgabe02.Node {
             remowe(a.getLeft());
             remowe(a.getRight());
         }
+        alles_update(a);
         return a;
     }
     public int depth(Node a) {
@@ -116,13 +130,51 @@ public class BinBaum extends blatt30.aufgabe02.Node {
         }
         return 1 + Math.max(depth(a.getLeft()), depth(a.getRight()));
     }
-    public Node update(Node a){
+    public void update(Node a){//nach jedem add und remove auf jeden Node testen
         int rechts = depth(a.getRight());
         int links = depth(a.getLeft());
         if (rechts+2 < links || rechts > links+2) {
             if (rechts > links +2) {
                 Node g = findInOrderNeighbour()[0];
+                Node temp = a;
+                a = g;
+                schieb(temp,"right");
+                remove(g);
+            } else if (links > rechts+2) {
+                Node j = findInOrderNeighbour()[1];
+                Node temp = a;
+                schieb(temp,"left");
+                a = j;
+                remove(j);
             }
+        }
+    }
+    public void schieb(Node h, String p){
+        if (h.getLeft() == null && p.equals("left")) {
+            h.setLeft(h);
+        }else if (h.getRight() == null && p.equals("right")) {
+            h.setRight(h);
+        } else if ( p.equals("left")) {
+            Node temp = h.getLeft();
+            h.setLeft(h);
+            schieb(temp, p);
+        }else if (p.equals("right")) {
+            Node temp = h.getRight();
+            h.setRight(h);
+            schieb(temp, p);
+        }
+    }
+    public void alles_update(Node a){
+        update(a);
+        if (a.getLeft() != null && a.getRight() != null){
+            alles_update(a.getLeft());
+            alles_update(a.getRight());
+        }
+        if (a.getLeft() != null) {
+            alles_update(a.getLeft());
+        }if (a.getRight() != null) {
+            alles_update(a.getRight());
+
         }
     }
 }

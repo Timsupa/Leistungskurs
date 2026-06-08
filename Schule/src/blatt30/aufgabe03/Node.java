@@ -4,6 +4,7 @@ public class Node {
     private int wert;
     private Node left;
     private Node right;
+    private Node parent;
 
     public Node(int wert, Node left, Node right) {
         this.wert = wert;
@@ -34,6 +35,7 @@ public class Node {
     public void setRight(Node right) {
         this.right = right;
     }
+
 
 
 }
