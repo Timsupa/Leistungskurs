@@ -177,4 +177,19 @@ public class BinBaum extends blatt30.aufgabe02.Node {
 
         }
     }
+    public void PreOrder(Node a){
+        System.out.println(a);
+        System.out.println(a.getLeft());
+        System.out.println(a.getRight());
+    }
+    public void InOrder(Node a){
+        System.out.println(a.getLeft());
+        System.out.println(a);
+        System.out.println(a.getRight());
+    }
+    public void PostOrder(Node a){
+        System.out.println(a.getLeft());
+        System.out.println(a.getRight());
+        System.out.println(a);
+    }
 }
