@@ -1,9 +1,11 @@
 package blatt32.aufgabe03;
 
+import javax.swing.text.html.HTML;
 import javax.swing.text.html.HTMLWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.Scanner;
+import schgraphs.*;
+
 
 public class Graph {
     int[][] graph;
@@ -86,7 +88,67 @@ public class Graph {
         }
         return nachbaren;
     }
-    public void exportHTML(){
+    public void exportHTML()throws  IOException{
+        StringBuilder matrix = new StringBuilder();
+        matrix.append("<!DOCTYPE html>\n");
+        matrix.append("<html>\n");
+        matrix.append("<head>\n");
+        matrix.append("<title>Adjazenmatrix</title>\n");
+        matrix.append("</head>\n");
+        matrix.append("<body>\n");
+        matrix.append("<table>\n");
+        for(int i = 0; i < this.graph.length; i++){
+            matrix.append("<tr>\n");
+            for(int j = 0; j < this.graph.length; j++){
+                matrix.append("<td>"+this.graph[j][i]+"</td>\n");
+            }
+            matrix.append("</tr>\n");
+        }
+        matrix.append("</table>\n");
+        matrix.append("</body>\n");
+        matrix.append("</html>\n");
 
+    }
+    public void exportGraph()throws IOException{
+        File Matrix = new File("graph");
+        FileWriter fw = new FileWriter(Matrix);
+        for(int k = 0; k < this.graph.length; k++){
+            for(int j = 0; j < this.graph.length; j++){
+                fw.write(this.graph[k][j]);
+                fw.write("\n");
+            }
+        }
+        fw.close();
+    }
+    public void importGraph(String filepath)throws IOException{
+        int k = 0;
+        String line;
+        char[] temp = new char[this.graph.length];
+        int[][] adjMatrix = new int[this.graph.length+1][this.graph.length+1];
+        File f = new File(filepath);
+        try(Scanner input = new Scanner(f)){
+            while(input.hasNextLine()){
+                 line = input.nextLine();
+                 temp = line.toCharArray();
+                 for(int i = 0; i < temp.length; i++){
+                     adjMatrix[k][i] = temp[i];
+                 }
+                 k++;
+            }
+        }
+
+    }
+
+    public static void main(String[] args) {
+        int[][] graph = new int[5][5];
+        for (int i = 0; i < graph.length; i++) {
+            for (int j = 0; j < graph.length; j++) {
+               graph[i][j] = blatt13.Zufall.zufallGanz(10);
+            }
+        }
+
+        SchGraphs sg = new SchGraphs();
+        sg.step(graph);
+        sg.start();
     }
 }
