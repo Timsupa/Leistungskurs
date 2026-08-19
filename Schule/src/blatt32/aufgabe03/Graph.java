@@ -138,6 +138,37 @@ public class Graph {
         }
 
     }
+    public void importGraphS(String filename) {
+        File f = new File(filename + ".txt");
+        try {
+            FileReader fr = new FileReader(f);
+            BufferedReader br = new BufferedReader(fr);
+
+            int size = 0;
+            if (br.ready()) {
+                size = Integer.parseInt(br.readLine());
+            }
+
+            int[][] adj = new int[size][size];
+
+            for (int i = 0; i < size; i++) {
+                for (int j = 0; j < size; j++) {
+                    if (br.ready()) {
+                        adj[i][j] = Integer.parseInt(br.readLine());
+                    } else {
+                        throw new RuntimeException();
+                    }
+                }
+            }
+
+            br.close();
+
+            this.graph = adj;
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static void main(String[] args) {
         int[][] graph = new int[5][5];
