@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Leistungskurs.iml" filepath="$PROJECT_DIR$/.idea/Leistungskurs.iml" />
       <module fileurl="file://$PROJECT_DIR$/Schule/Schule.iml" filepath="$PROJECT_DIR$/Schule/Schule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bwinf/bwinf.iml" filepath="$PROJECT_DIR$/bwinf/bwinf.iml" />
     </modules>
   </component>
 </project>
