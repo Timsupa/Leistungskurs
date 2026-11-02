@@ -5,6 +5,7 @@ import java.io.File;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class Scannen {
     public static double div(int a, int b) {
@@ -12,7 +13,8 @@ public class Scannen {
     }
 
     public static void main(String[] args) {
-        alleDurch("Deutschland.png");
+        //alleDurch("Deutschland.png");
+        fuenfGleicheLaender("Deutschland.png");
     }
         public static String[] alleDurch(String flaggennamePNG){
         String[] a = new String[4];
@@ -25,6 +27,25 @@ public class Scannen {
 
             return a;
         }
+        public static String fuenfGleicheLaender(String flaggenname){
+        File file = new File("bwinf\\src\\Flaggen\\");
+        String[] alleLaender = file.list();
+        int  ges[] = new int[alleLaender.length];
+            for (int i = 0; i < alleLaender.length; i++) {
+                ges[i] = vergleichEinfach(flaggenname,alleLaender[i]);
+            }
+            int gro = 0;
+            int stelle = 0;
+            for (int i = 0; i < ges.length; i++) {
+                if (ges[i] > gro){
+                    gro = ges[i];
+                    stelle = i;
+                }
+            }
+            System.out.println(alleLaender[stelle]);
+            return alleLaender[stelle] ;
+
+        }
 
         public static int vergleichEinfach(String flaggenname, String zuVergleichen){
             Color [] n = gewuenschteFlagge(flaggenname);
@@ -33,22 +54,24 @@ public class Scannen {
             boolean rot = false;
             boolean guen = false;
             int gleichheiten = 0 ;
-            for (int i = 0; i < 8; i++) {
-                if ((Math.abs(n[i].getBlue() - g[i].getBlue())) <= 30) {
+            for (int i = 0; i < n.length; i++) {
+                if ((Math.abs(n[i].getBlue() - g[i].getBlue())) <= 20) {
                     blau = true;
                 }
-                if ((Math.abs(n[i].getRed() - g[i].getRed())) <= 30){
+                if ((Math.abs(n[i].getRed() - g[i].getRed())) <= 20){
                     rot = true;
                 }
-                if ((Math.abs(n[i].getGreen() - g[i].getGreen())) <= 30){
+                if ((Math.abs(n[i].getGreen() - g[i].getGreen())) <= 20){
                     guen = true;
                 }
                 if (blau && rot && guen) {
                     gleichheiten++;
                 }
+                blau = false;
+                rot = false;
+                guen = false;
 
             }
-            System.out.println( gleichheiten + " " + zuVergleichen);
             return gleichheiten;
         }
 
@@ -59,26 +82,19 @@ public class Scannen {
 
                 int beginnL = 192;
                 int endeR = 578;
+                int breite = image.getWidth();
                 int hoehe = image.getHeight();
-                Color[] farbe = new Color[9];
-                int rgb = image.getRGB(192 + (endeR - beginnL) / 3, hoehe / 3);
-                farbe[0] = new Color(rgb);
-                rgb = image.getRGB(192 + (endeR - beginnL) / 2, hoehe / 3);
-                farbe[1] = new Color(rgb);
-                rgb = image.getRGB(578 - (endeR - beginnL) / 3, hoehe / 3);
-                farbe[2] = new Color(rgb);
-                rgb = image.getRGB(192 + (endeR - beginnL) / 3, hoehe / 2);
-                farbe[3] = new Color(rgb);
-                rgb = image.getRGB(192 + (endeR - beginnL) / 2, hoehe / 2);
-                farbe[4] = new Color(rgb);
-                rgb = image.getRGB(578 - (endeR - beginnL) / 3, hoehe / 2);
-                farbe[5] = new Color(rgb);
-                rgb = image.getRGB(192 + (endeR - beginnL) / 3, hoehe * (1 / 3));
-                farbe[6] = new Color(rgb);
-                rgb = image.getRGB(192 + (endeR - beginnL) / 2, hoehe * (1 / 3));
-                farbe[7] = new Color(rgb);
-                rgb = image.getRGB(578 - (endeR - beginnL) / 3, hoehe * (1 / 3));
-                farbe[8] = new Color(rgb);
+                int loeris = 0;
+                Color[] farbe = new Color[hoehe*breite];
+                for ( int i = 0; i < breite; i++ ) {
+                    for ( int j = 0;j < hoehe ;j++ ) {
+                        farbe[loeris] = new Color(image.getRGB(i, j));
+                        loeris++;
+
+                    }
+
+                }
+
                 return farbe;
 
 
