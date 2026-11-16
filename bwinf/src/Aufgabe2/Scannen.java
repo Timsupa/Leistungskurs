@@ -14,7 +14,7 @@ public class Scannen {
 
     public static void main(String[] args) {
         //alleDurch("Deutschland.png");
-        fuenfGleicheLaender("Deutschland.png");
+        fuenfGleicheLaender("Vatikanstadt.png");
     }
         public static String[] alleDurch(String flaggennamePNG){
         String[] a = new String[4];
@@ -27,23 +27,31 @@ public class Scannen {
 
             return a;
         }
-        public static String fuenfGleicheLaender(String flaggenname){
+        public static void fuenfGleicheLaender(String flaggenname){
         File file = new File("bwinf\\src\\Flaggen\\");
         String[] alleLaender = file.list();
         int  ges[] = new int[alleLaender.length];
             for (int i = 0; i < alleLaender.length; i++) {
                 ges[i] = vergleichEinfach(flaggenname,alleLaender[i]);
             }
-            int gro = 0;
             int stelle = 0;
-            for (int i = 0; i < ges.length; i++) {
-                if (ges[i] > gro){
-                    gro = ges[i];
-                    stelle = i;
+            int[] a = new int[6];
+            for (int j = 0; j < 6; j++) {
+                int gro = 0;
+                for (int i = 0; i < ges.length; i++) {
+                    if (ges[i] > gro) {
+                        gro = ges[i];
+                        stelle = i;
+                    }
                 }
+
+                    a[j] = stelle;
+
+                ges[stelle] = 0;
             }
-            System.out.println(alleLaender[stelle]);
-            return alleLaender[stelle] ;
+            for (int i = 1; i < 6; i++) {
+                System.out.println(alleLaender[a[i]]);
+            }
 
         }
 
@@ -55,13 +63,13 @@ public class Scannen {
             boolean guen = false;
             int gleichheiten = 0 ;
             for (int i = 0; i < n.length; i++) {
-                if ((Math.abs(n[i].getBlue() - g[i].getBlue())) <= 20) {
+                if ((Math.abs(n[i].getBlue() - g[i].getBlue())) <= 10) {
                     blau = true;
                 }
-                if ((Math.abs(n[i].getRed() - g[i].getRed())) <= 20){
+                if ((Math.abs(n[i].getRed() - g[i].getRed())) <= 10){
                     rot = true;
                 }
-                if ((Math.abs(n[i].getGreen() - g[i].getGreen())) <= 20){
+                if ((Math.abs(n[i].getGreen() - g[i].getGreen())) <= 10){
                     guen = true;
                 }
                 if (blau && rot && guen) {
